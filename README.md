@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blockchain Symphony
+
+An interactive web application that transforms blockchain transactions into musical compositions, built with Next.js.
+
+## Overview
+
+Blockchain Symphony is a unique project that converts blockchain data into musical experiences. It combines blockchain technology with algorithmic music generation to create an immersive audio-visual experience.
+
+## Features
+
+- Real-time blockchain transaction monitoring
+- Dynamic music generation based on transaction data
+- Interactive visualization of blockchain-music relationships
+- Live activity feed of transactions
+- Remix mode for user interaction
+- Share functionality for created melodies
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
 
-```bash
+bash
+git clone https://github.com/SYMPH373/SYMPH-AI.git
+
+
+2. Install dependencies:
+
+bash
+npm install
+
+3. Run the development server:
+
+bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration Notes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Next.js Configuration
+The project uses a custom `next.config.js` that includes:
+- ESLint and TypeScript build error handling
+- Webpack configurations for Node.js module compatibility
+- SWC transforms optimization
 
-## Learn More
+### ESLint Configuration
+`.eslintrc.json` is configured to handle:
+- TypeScript-specific rules
+- React Hooks dependencies
+- Unused variable checks
 
-To learn more about Next.js, take a look at the following resources:
+## Known Issues
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- React 19.0.0 has some peer dependency conflicts with react-reconciler
+- Some TypeScript/ESLint configurations may need adjustment for production builds
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome! Please feel free to submit a Pull Request.
