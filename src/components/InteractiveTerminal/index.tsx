@@ -9,7 +9,7 @@ interface InteractiveTerminalProps {
 
 export const InteractiveTerminal = ({ onCommand }: InteractiveTerminalProps) => {
   const [command, setCommand] = useState('');
-  const [output, setOutput] = useState<string[]>(['Welcome to Blockchain Symphony v1.0', 'Type "help" for available commands']);
+  const [output, setOutput] = useState<string[]>(['Welcome to SYMPH-AI v1.0', 'Type "help" for available commands']);
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
