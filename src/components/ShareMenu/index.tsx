@@ -12,9 +12,9 @@ export const ShareMenu = ({ transaction }: ShareMenuProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleShareOnX = () => {
-    const text = `🎵 Listen to this blockchain melody on Blockchain Symphony\n\n`;
+    const text = `🎵 Listen to this blockchain melody on SYMPH-AI\n\n`;
     const url = `${window.location.origin}?tx=${transaction.signature}`;
-    const hashtags = 'BlockchainSymphony,Blockchain,Music';
+    const hashtags = 'SYMPH-AI,Blockchain,Music';
     
     const xIntent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;
     
