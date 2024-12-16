@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BlockchainExplorer } from '@/components/BlockchainExplorer';
 import { TransactionDetails } from '@/components/TransactionDetails';
@@ -21,6 +21,18 @@ export default function Home() {
   const blockchainService = new BlockchainService();
   const musicGenerator = useMemo(() => new MusicGenerator(), []);
 
+  const handleTransactionSelect = useCallback(async (signature: string) => {
+    const transaction = await blockchainService.getTransaction(signature);
+    setSelectedTransaction(transaction);
+    
+    if (transaction) {
+      const notes = musicGenerator.hashToNotes(signature);
+      setIsPlaying(true);
+      await musicGenerator.playSequence(notes);
+      setIsPlaying(false);
+    }
+  }, [blockchainService, musicGenerator]);
+
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.code === 'Space' && selectedTransaction) {
@@ -31,19 +43,7 @@ export default function Home() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [selectedTransaction]);
-
-  const handleTransactionSelect = async (signature: string) => {
-    const transaction = await blockchainService.getTransaction(signature);
-    setSelectedTransaction(transaction);
-    
-    if (transaction) {
-      const notes = musicGenerator.hashToNotes(signature);
-      setIsPlaying(true);
-      await musicGenerator.playSequence(notes);
-      setIsPlaying(false);
-    }
-  };
+  }, [selectedTransaction, handleTransactionSelect]);
 
   const handleCommand = async (command: string) => {
     switch (command.toLowerCase()) {
