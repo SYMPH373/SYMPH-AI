@@ -1,10 +1,10 @@
-# Blockchain Symphony
+# SYMPH-AI
 
 An interactive web application that transforms blockchain transactions into musical compositions, built with Next.js.
 
 ## Overview
 
-Blockchain Symphony is a unique project that converts blockchain data into musical experiences. It combines blockchain technology with algorithmic music generation to create an immersive audio-visual experience.
+SYMPH-AI is a unique project that converts blockchain data into musical experiences. It combines blockchain technology with algorithmic music generation to create an immersive audio-visual experience.
 
 ## Features
 
