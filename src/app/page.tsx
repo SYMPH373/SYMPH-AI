@@ -97,7 +97,7 @@ export default function Home() {
                 animate={{ y: 0 }}
                 transition={{ type: "spring", stiffness: 100 }}
               >
-                Blockchain Symphony
+                SYMPH-AI
               </motion.h1>
               
               <div className="w-full max-w-3xl h-[calc(100vh-120px)] overflow-y-auto space-y-4 hide-scrollbar">
