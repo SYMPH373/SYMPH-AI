@@ -13,22 +13,30 @@ export class BlockchainService {
         throw new Error('Invalid token address format');
       }
 
-      const response = await fetch('/api/transactions', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ tokenAddress: this.tokenAddress })  // Send token address to API
-      });
+      const response = await fetch(
+        `https://api.helius.xyz/v0/addresses/${this.tokenAddress}/transactions?api-key=${this.apiKey}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          cache: 'no-store'
+        }
+      );
 
       const data = await response.json();
       if (!data || data.length === 0) {
         throw new Error('No transactions found for this address');
       }
-      return data;
+
+      return data.map((tx: any) => ({
+        signature: tx.signature,
+        timestamp: tx.timestamp,
+        status: tx.status || 'confirmed'
+      }));
     } catch (error) {
       console.error('Error fetching recent transactions:', error);
-      return [];
+      throw error; // Propagate error to handle it in the UI
     }
   }
 
