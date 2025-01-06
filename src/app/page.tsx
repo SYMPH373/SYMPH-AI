@@ -116,73 +116,81 @@ export default function Home() {
   }, [blockchainService, refreshTrigger]);
 
   return (
-    <div className="min-h-screen">
-      <div className="max-w-[1000px] mx-auto p-4">
-        <div className="flex gap-8">
-          {/* Left side - Live Activity */}
-          <div className="w-[300px] mt-[180px]">
-            <LiveActivityFeed />
-          </div>
+    <div className="min-h-screen bg-[#000033]">
+      {/* Background Effects */}
+      <div className="matrix-bg" />
+      <div className="matrix-rain" />
+      <div className="ambient-light" />
+      <div className="floating-circuits" />
 
-          {/* Center - Main Terminal Content */}
-          <div className="w-[600px]">
-            <div className="matrix-bg" />
-            <div className="matrix-rain" />
-            <div className="ambient-light" />
-            <div className="floating-circuits" />
-            <motion.main 
-              className="flex flex-col items-center min-h-screen p-4 relative z-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.h1 
-                className="text-4xl font-bold text-[#00ff00] mb-4 glow-text"
-                initial={{ y: -50 }}
-                animate={{ y: 0 }}
-                transition={{ type: "spring", stiffness: 100 }}
-              >
-                SYMPH-AI
-              </motion.h1>
-              
-              <div className="w-full max-w-3xl h-[calc(100vh-120px)] overflow-y-auto space-y-4 hide-scrollbar">
-                <InteractiveTerminal 
-                  onCommand={handleCommand}
-                  onTokenAddressChange={handleTokenAddressChange}
-                  blockchainService={blockchainService}
-                  musicGenerator={musicGenerator}
-                />
-                
-                <AnimatePresence>
-                  {selectedTransaction && (
-                    <>
-                      <TransactionDetails transaction={selectedTransaction} />
-                      <VisualizerSelector 
-                        isPlaying={isPlaying} 
-                        type={selectedTransaction.type}
-                        transaction={selectedTransaction.signature}
-                      />
-                      <ShareMenu transaction={selectedTransaction} />
-                    </>
-                  )}
-                </AnimatePresence>
-                
-                <BlockchainExplorer 
-                  onTransactionSelect={handleTransactionSelect}
-                  blockchainService={blockchainService}
-                  refreshTrigger={refreshTrigger}
-                />
-              </div>
-            </motion.main>
-            <CommandHelp />
-            <div className="fixed top-4 right-4">
-              <VolumeControl onChange={handleVolumeChange} />
+      <div className="max-w-[1000px] mx-auto p-4 relative z-10">
+        <div className="flex gap-8">
+          {/* Left side */}
+          <div className="w-[300px] mt-[180px]">
+            <div className="side-panel">
+              <LiveActivityFeed />
             </div>
           </div>
 
-          {/* Right side - Network Stats */}
+          {/* Center */}
+          <div className="w-[600px]">
+            <div className="terminal-window">
+              <motion.main 
+                className="flex flex-col items-center min-h-screen p-4 relative z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.h1 
+                  className="text-4xl font-bold text-[#00ff00] mb-4 glow-text"
+                  initial={{ y: -50 }}
+                  animate={{ y: 0 }}
+                  transition={{ type: "spring", stiffness: 100 }}
+                >
+                  SYMPH-AI
+                </motion.h1>
+                
+                <div className="w-full max-w-3xl h-[calc(100vh-120px)] overflow-y-auto space-y-4 hide-scrollbar">
+                  <InteractiveTerminal 
+                    onCommand={handleCommand}
+                    onTokenAddressChange={handleTokenAddressChange}
+                    blockchainService={blockchainService}
+                    musicGenerator={musicGenerator}
+                  />
+                  
+                  <AnimatePresence>
+                    {selectedTransaction && (
+                      <>
+                        <TransactionDetails transaction={selectedTransaction} />
+                        <VisualizerSelector 
+                          isPlaying={isPlaying} 
+                          type={selectedTransaction.type}
+                          transaction={selectedTransaction.signature}
+                        />
+                        <ShareMenu transaction={selectedTransaction} />
+                      </>
+                    )}
+                  </AnimatePresence>
+                  
+                  <BlockchainExplorer 
+                    onTransactionSelect={handleTransactionSelect}
+                    blockchainService={blockchainService}
+                    refreshTrigger={refreshTrigger}
+                  />
+                </div>
+              </motion.main>
+              <CommandHelp />
+              <div className="fixed top-4 right-4">
+                <VolumeControl onChange={handleVolumeChange} />
+              </div>
+            </div>
+          </div>
+
+          {/* Right side */}
           <div className="w-[300px] mt-[180px]">
-            <NetworkStats />
+            <div className="side-panel">
+              <NetworkStats />
+            </div>
           </div>
         </div>
       </div>
