@@ -1,83 +1,67 @@
-/* Terminal Theme */
-:root {
-  --terminal-bg: #000913;
-  --terminal-text: #0cff92;
-  --terminal-dim: #00734d;
-  --terminal-glow: rgba(12, 255, 146, 0.5);
-  --terminal-border: #004d2e;
-  --terminal-shadow: rgba(12, 255, 146, 0.2);
-  --terminal-accent: #ff00ff;
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--terminal-bg);
-  color: var(--terminal-text);
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
-  margin: 0;
+  background: #000913;
+  color: #0cff92;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
   overflow: hidden;
 }
 
-/* Main Terminal Container */
+/* Main Layout */
 .terminal-container {
-  min-height: 100vh;
-  overflow: hidden;
-  background: var(--terminal-bg);
-}
-
-/* Terminal Header */
-.terminal-header {
+  width: 100vw;
+  height: 100vh;
+  padding: 16px;
   display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid var(--terminal-border);
-  margin-bottom: 20px;
+  flex-direction: column;
 }
 
-.terminal-title {
-  font-size: 24px;
-  color: var(--terminal-text);
-  text-shadow: 0 0 10px var(--terminal-glow);
-  margin: 0;
-}
-
-/* Main Terminal Container */
 .terminal-content {
   display: grid;
-  grid-template-columns: 300px minmax(600px, 1fr) 300px;
-  gap: 24px;
-  padding: 20px;
-  max-width: 1800px;
-  margin: 0 auto;
-  height: 100vh;
-  overflow: hidden;
+  grid-template-columns: 280px 1fr 280px;
+  gap: 16px;
+  height: calc(100vh - 32px);
+  width: 100%;
 }
 
-/* Terminal Main Area */
+/* Side Panels */
+.terminal-panel {
+  background: rgba(0, 13, 25, 0.95);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+/* Main Terminal Area */
 .terminal-main {
   background: rgba(0, 13, 25, 0.95);
-  border: 1px solid var(--terminal-border);
-  border-radius: 8px;
-  padding: 20px;
-  height: calc(100vh - 40px);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  height: 100%;
   overflow-y: auto;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
-/* Welcome Section */
+/* Terminal Welcome */
 .terminal-welcome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  text-align: center;
   margin-bottom: 16px;
 }
 
 .terminal-welcome-title {
   color: #0cff92;
-  font-size: 1.2em;
-  text-shadow: 0 0 10px rgba(12, 255, 146, 0.5);
+  margin-bottom: 8px;
 }
 
 .terminal-welcome-address {
@@ -87,466 +71,54 @@ body {
 
 /* Input Area */
 .terminal-input-container {
-  margin: 8px 0;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
   padding: 8px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-}
-
-.terminal-input {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-}
-
-/* Transaction Details */
-.transaction-details {
-  margin: 16px 0;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-}
-
-.transaction-field {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  font-size: 0.9em;
-}
-
-/* Visualizer Section */
-.visualizer-controls {
-  margin: 20px 0;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--terminal-border);
-  border-radius: 8px;
-}
-
-.visualizer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
   margin-bottom: 16px;
 }
 
-.visualizer-btn {
-  padding: 6px 12px;
-  min-width: 100px;
-  font-size: 0.9em;
-}
-
-/* Side Panels */
-.terminal-panel {
-  background: rgba(0, 13, 25, 0.95);
-  border: 1px solid var(--terminal-border);
-  border-radius: 8px;
-  padding: 20px;
-  height: calc(100vh - 40px);
-  overflow-y: auto;
-}
-
-/* Terminal Input */
-.terminal-input input {
-  background: transparent;
-  border: none;
-  color: var(--terminal-text);
-  font-family: inherit;
-  font-size: 14px;
-  width: 100%;
-  outline: none;
-}
-
-.terminal-input::before {
-  content: '>';
-  color: var(--terminal-text);
-  margin-right: 10px;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 13, 25, 0.3);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--terminal-border);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--terminal-text);
-}
-
-/* Terminal Effects */
-.scan-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--terminal-glow);
-  opacity: 0.5;
-  animation: scan 2s linear infinite;
-}
-
-@keyframes scan {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100vh); }
-}
-
-/* Command Buttons */
-.terminal-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.terminal-btn {
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
-  color: var(--terminal-text);
-  padding: 6px 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.terminal-btn:hover {
-  background: var(--terminal-border);
-  box-shadow: 
-    0 0 10px var(--terminal-glow),
-    inset 0 0 15px var(--terminal-shadow);
-  border-color: var(--terminal-text);
-}
-
-.terminal-btn:hover::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(12, 255, 146, 0.2),
-    transparent
-  );
-  animation: button-glow 1s ease-out;
-}
-
-/* Terminal Text Styles */
-.terminal-text {
-  color: var(--terminal-text);
-  font-family: 'JetBrains Mono', monospace;
-  text-shadow: 0 0 5px var(--terminal-glow);
-}
-
-.terminal-text-dim {
-  color: #0cff92;  /* Bright cyber green */
-  opacity: 0.7;
-}
-
-.terminal-text-accent {
-  color: var(--terminal-accent);
-}
-
-/* Enhanced Input Field */
 .terminal-input {
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
   padding: 8px 12px;
-  color: var(--terminal-text);
-  font-family: 'JetBrains Mono', monospace;
 }
 
-.terminal-input:focus {
-  outline: none;
-  border-color: var(--terminal-text);
-  box-shadow: 0 0 10px var(--terminal-glow);
-}
-
-/* Add scanlines effect */
-.terminal-scanlines {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    rgba(0, 0, 0, 0.1) 50%
-  );
-  background-size: 100% 4px;
-  z-index: 2;
-}
-
-/* New Animations */
-@keyframes button-glow {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-@keyframes text-flicker {
-  0% { opacity: 1; }
-  2% { opacity: 0.8; }
-  4% { opacity: 1; }
-  8% { opacity: 0.9; }
-  70% { opacity: 0.9; }
-  100% { opacity: 1; }
-}
-
-/* Add matrix rain effect in background */
-.matrix-rain {
-  opacity: 0.1;
-  filter: blur(1px);
-}
-
-/* Transaction Details Styling */
-.transaction-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 16px;
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-  margin: 16px 0;
-}
-
-.transaction-field {
-  display: flex;
-  gap: 12px;
-  font-family: 'JetBrains Mono', monospace;
-  width: 100%;
-  justify-content: center;
-}
-
-.transaction-signature {
-  color: #ff3399;  /* Neon pink */
-  text-shadow: 0 0 10px rgba(255, 51, 153, 0.5);
-}
-
-.transaction-type {
-  color: #00ffff;  /* Cyan */
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-}
-
-.transaction-status {
-  color: #00ff00;  /* Lime */
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
-
-.transaction-timestamp {
-  color: #ffcc00;  /* Gold */
-  text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-}
-
-.transaction-fee {
-  color: #ff9900;  /* Orange */
-  text-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
-}
-
-/* Add hover effect */
-.transaction-field:hover span:not(.terminal-text-dim) {
-  filter: brightness(1.2);
-  transform: scale(1.02);
-  transition: all 0.2s ease;
-}
-
-/* Visualizer buttons styling */
-.visualizer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 10px 0;
-}
-
-/* Network Stats styling */
-.network-stats {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.stats-value {
-  color: #ff00ff; /* Magenta */
-  font-weight: bold;
-}
-
-.stats-label {
-  color: var(--terminal-dim);
-}
-
-/* Visualizer Controls */
-.visualizer-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  padding: 20px;
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-  margin: 20px auto;
-}
-
-.visualizer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.visualizer-btn {
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
-  color: var(--terminal-text);
-  padding: 8px 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 4px;
-  min-width: 120px;
-  text-align: center;
-}
-
-.sound-visualization {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Animation for active visualizer */
-.visualizer-btn.active {
-  background: var(--terminal-text);
-  color: var(--terminal-bg);
-  box-shadow: 
-    0 0 20px var(--terminal-glow),
-    inset 0 0 10px rgba(0, 0, 0, 0.3);
-  transform: translateY(-1px);
-}
-
-/* Recent Transactions Styling */
-.recent-transactions {
-  width: 100%;
-  max-width: 100%;
-  margin: 20px 0;
-  padding: 16px;
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-}
-
+/* Transaction List */
 .transaction-list {
   overflow-y: auto;
-  max-height: 300px;
-  padding-right: 10px;
+  padding-right: 8px;
 }
 
 .transaction-item {
   padding: 8px;
-  margin: 4px 0;
   border: 1px solid transparent;
   border-radius: 4px;
+  margin-bottom: 4px;
   font-size: 0.9em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.transaction-loading {
-  color: #ff3399;
-  animation: pulse 1.5s infinite;
-  text-align: center;
-  width: 100%;
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+::-webkit-scrollbar-track {
+  background: rgba(0, 13, 25, 0.3);
 }
 
-/* Terminal Welcome Section */
-.terminal-welcome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 20px;
+::-webkit-scrollbar-thumb {
+  background: #004d2e;
+  border-radius: 3px;
 }
 
-.terminal-welcome-title {
-  color: var(--terminal-text);
-  font-size: 1.2em;
-  text-shadow: 0 0 10px var(--terminal-glow);
-}
-
-.terminal-welcome-address {
-  color: var(--terminal-accent);
-  font-family: 'JetBrains Mono', monospace;
-  text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
-}
-
-/* Terminal Input Container */
-.terminal-input-container {
-  width: 100%;
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-  padding: 8px;
-}
-
-/* Terminal Input */
-.terminal-input {
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-  padding: 8px 12px;
-  margin: 0;
-}
-
-.terminal-input::before {
-  content: '>';
-  color: var(--terminal-text);
-  margin-right: 8px;
-  font-weight: bold;
-}
-
-.terminal-input input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: var(--terminal-text);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  outline: none;
-  padding: 0;
-  margin: 0;
+::-webkit-scrollbar-thumb:hover {
+  background: #0cff92;
 }
