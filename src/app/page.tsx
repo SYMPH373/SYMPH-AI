@@ -28,25 +28,22 @@ export default function Home() {
     try {
       const cleanAddress = address.trim();
       
-      // Basic format check before attempting PublicKey creation
+      // Basic format check
       if (!cleanAddress.match(/^[A-HJ-NP-Za-km-z1-9]{32,44}$/)) {
         throw new Error('Invalid address format - must be base58 encoded');
       }
       
-      // Use the BlockchainService's setAddress method
       blockchainService.tokenAddress = cleanAddress;
       setTokenAddress(cleanAddress);
       setRefreshTrigger(prev => prev + 1);
       
-      // Force an immediate refresh
       const transactions = await blockchainService.getRecentTransactions();
       if (transactions.length === 0) {
-        throw new Error('No transactions found for this address');
+        console.log('No transactions found for address:', cleanAddress);
       }
       
-      return `Successfully changed token address to ${cleanAddress}`;
+      return `Changed token address to ${cleanAddress}`;
     } catch (error) {
-      console.error('Token address error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       throw new Error(`Error: ${errorMessage}`);
     }
