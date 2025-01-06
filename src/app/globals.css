@@ -1,24 +1,65 @@
 /* Base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.app-container {
+  min-height: 100vh;
+  position: relative;
 }
 
-/* Variables */
-:root {
-  --primary: #FF00FF;     /* Neon magenta */
-  --secondary: #00FFFF;   /* Cyan */
-  --accent: #FF3366;      /* Hot pink */
-  --glow: #9933FF;        /* Purple */
-  --background: #000033;  /* Deep navy */
+.background-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 }
 
-/* Animations */
+.main-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.content-grid {
+  display: flex;
+  gap: 2rem;
+}
+
+.side-panel {
+  width: 300px;
+  margin-top: 180px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.terminal-container {
+  width: 600px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 0.5rem;
+}
+
+.terminal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #00ff00;
+  margin-bottom: 1rem;
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Your existing animations */
 @keyframes glow {
   0% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
   50% { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
   100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
 }
 
-/* Rest of your original animations and styles... */
+/* Rest of your animations and effects */
