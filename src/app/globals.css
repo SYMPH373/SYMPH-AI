@@ -66,6 +66,10 @@ body {
     0 0 15px var(--terminal-shadow),
     inset 0 0 30px rgba(0, 13, 25, 0.8);
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 /* Main Terminal Window */
@@ -243,4 +247,55 @@ body {
 .matrix-rain {
   opacity: 0.1;
   filter: blur(1px);
+}
+
+/* Transaction Details Styling */
+.transaction-field {
+  margin: 4px 0;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.transaction-signature {
+  color: #ff00ff; /* Magenta */
+}
+
+.transaction-type {
+  color: #00ffff; /* Cyan */
+}
+
+.transaction-status {
+  color: #00ff00; /* Green */
+}
+
+.transaction-timestamp {
+  color: #ffff00; /* Yellow */
+}
+
+.transaction-fee {
+  color: #ff9900; /* Orange */
+}
+
+/* Visualizer buttons styling */
+.visualizer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+/* Network Stats styling */
+.network-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stats-value {
+  color: #ff00ff; /* Magenta */
+  font-weight: bold;
+}
+
+.stats-label {
+  color: var(--terminal-dim);
 }
