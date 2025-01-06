@@ -16,6 +16,7 @@ import { LiveActivityFeed } from '@/components/LiveActivityFeed';
 import { NetworkStats } from '@/components/NetworkStats';
 import { PublicKey } from '@solana/web3.js';
 import { ConstellationField } from '@/components/ConstellationField';
+import { DreamcatcherPortal } from '@/components/DreamcatcherPortal';
 
 export default function Home() {
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
@@ -116,23 +117,28 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Background constellation effect */}
-      <ConstellationField 
-        transactions={recentTransactions} 
-        musicGenerator={musicGenerator}
-        onTransactionSelect={handleTransactionSelect}
-      />
-      
-      {/* Main content */}
+      {/* Mystical Background Layers */}
+      <div className="fixed inset-0 z-0">
+        <DreamcatcherPortal 
+          transactions={recentTransactions} 
+        />
+        <ConstellationField 
+          transactions={recentTransactions} 
+          musicGenerator={musicGenerator}
+          onTransactionSelect={handleTransactionSelect}
+        />
+      </div>
+
+      {/* Main content with increased z-index */}
       <div className="relative z-10 max-w-[1000px] mx-auto p-4">
         <div className="flex gap-8">
           {/* Left side - Live Activity */}
-          <div className="w-[300px] mt-[180px]">
+          <div className="w-[300px] mt-[180px] backdrop-blur-sm bg-black/30 rounded-lg p-4">
             <LiveActivityFeed />
           </div>
 
           {/* Center - Main Terminal Content */}
-          <div className="w-[600px]">
+          <div className="w-[600px] backdrop-blur-sm bg-black/30 rounded-lg">
             <motion.main 
               className="flex flex-col items-center min-h-screen p-4"
               initial={{ opacity: 0 }}
@@ -184,7 +190,7 @@ export default function Home() {
           </div>
 
           {/* Right side - Network Stats */}
-          <div className="w-[300px] mt-[180px]">
+          <div className="w-[300px] mt-[180px] backdrop-blur-sm bg-black/30 rounded-lg p-4">
             <NetworkStats />
           </div>
         </div>
