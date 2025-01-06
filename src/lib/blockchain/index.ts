@@ -4,10 +4,22 @@ export class BlockchainService {
   private apiKey = '3fba9746-b765-46e8-ac4f-97f957f846dd';
   tokenAddress: string = '7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump';
 
+  private isValidAddress(address: string): boolean {
+    try {
+      new PublicKey(address);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   async getRecentTransactions() {
     try {
-      const tokenProgramId = new PublicKey(this.tokenAddress);
-      
+      if (!this.isValidAddress(this.tokenAddress)) {
+        console.error('Invalid token address format');
+        return [];
+      }
+
       const response = await fetch(
         `https://api.helius.xyz/v0/addresses/${this.tokenAddress}/transactions?api-key=${this.apiKey}&commitment=confirmed`,
         {
@@ -19,19 +31,20 @@ export class BlockchainService {
       );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch transactions');
+        console.error('Failed to fetch transactions');
+        return [];
       }
 
       const data = await response.json();
-      return data.map((tx: any) => ({
+      return Array.isArray(data) ? data.map((tx: any) => ({
         signature: tx.signature,
         timestamp: tx.timestamp,
         status: tx.status || 'confirmed'
-      })) || [];
+      })) : [];
       
     } catch (error) {
       console.error('Error fetching recent transactions:', error);
-      return []; // Return empty array instead of throwing
+      return [];
     }
   }
 
