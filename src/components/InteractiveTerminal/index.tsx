@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 
 interface InteractiveTerminalProps {
   onCommand?: (command: string) => void;
+  onTokenAddressChange?: (address: string) => void;
 }
 
-export const InteractiveTerminal = ({ onCommand }: InteractiveTerminalProps) => {
+export const InteractiveTerminal = ({ onCommand, onTokenAddressChange }: InteractiveTerminalProps) => {
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState<string[]>(['Welcome to SYMPH-AI v1.0 | 7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump', 'Type "help" for available commands']);
   const [history, setHistory] = useState<string[]>([]);
@@ -16,8 +17,9 @@ export const InteractiveTerminal = ({ onCommand }: InteractiveTerminalProps) => 
 
   const handleCommand = (cmd: string) => {
     const newOutput = [...output, `$ ${cmd}`];
+    const [command, ...args] = cmd.toLowerCase().split(' ');
     
-    switch (cmd.toLowerCase()) {
+    switch (command) {
       case 'help':
         newOutput.push(
           'Available commands:',
@@ -26,7 +28,8 @@ export const InteractiveTerminal = ({ onCommand }: InteractiveTerminalProps) => 
           '  play     - Play current transaction melody',
           '  stop     - Stop playing melody',
           '  theme    - Toggle color theme',
-          '  history  - Show command history'
+          '  history  - Show command history',
+          '  settoken <address> - Set token contract address'
         );
         break;
       
@@ -40,6 +43,18 @@ export const InteractiveTerminal = ({ onCommand }: InteractiveTerminalProps) => 
       
       case 'theme':
         newOutput.push('Theme toggled');
+        break;
+      
+      case 'settoken':
+        if (args.length === 0) {
+          newOutput.push('Error: Please provide a token address');
+        } else {
+          const address = args[0];
+          if (onTokenAddressChange) {
+            onTokenAddressChange(address);
+            newOutput.push(`Token address set to: ${address}`);
+          }
+        }
         break;
       
       default:
