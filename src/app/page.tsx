@@ -116,25 +116,31 @@ export default function Home() {
   }, [blockchainService, refreshTrigger]);
 
   return (
-    <div className="min-h-screen bg-[#000033]">
-      {/* Background Effects */}
-      <div className="matrix-bg" />
-      <div className="matrix-rain" />
-      <div className="ambient-light" />
-      <div className="floating-circuits" />
-
-      <div className="max-w-[1000px] mx-auto p-4 relative z-10">
-        <div className="flex gap-8">
-          {/* Left side */}
-          <div className="w-[300px] mt-[180px]">
-            <div className="side-panel">
+    <div className="neural-hub">
+      <div className="neural-grid" />
+      {[...Array(5)].map((_, i) => (
+        <div 
+          key={i} 
+          className="energy-flow"
+          style={{ 
+            top: `${i * 20}%`,
+            animationDelay: `${i * 0.5}s`
+          }}
+        />
+      ))}
+      
+      <div className="max-w-[1200px] mx-auto p-8 relative z-10">
+        <div className="flex gap-12">
+          {/* Left Neural Hub */}
+          <div className="w-[300px]">
+            <div className="hex-panel">
               <LiveActivityFeed />
             </div>
           </div>
 
-          {/* Center */}
-          <div className="w-[600px]">
-            <div className="terminal-window">
+          {/* Central Neural Terminal */}
+          <div className="flex-1">
+            <div className="neural-terminal">
               <motion.main 
                 className="flex flex-col items-center min-h-screen p-4 relative z-10"
                 initial={{ opacity: 0 }}
@@ -186,9 +192,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right side */}
-          <div className="w-[300px] mt-[180px]">
-            <div className="side-panel">
+          {/* Right Neural Hub */}
+          <div className="w-[300px]">
+            <div className="hex-panel">
               <NetworkStats />
             </div>
           </div>
