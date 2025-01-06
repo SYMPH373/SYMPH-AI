@@ -1,343 +1,158 @@
-/* Base Layout */
-.app-container {
-  min-height: 100vh;
-  position: relative;
-  background: #000033;
-  color: var(--primary);
-  font-family: 'Courier New', monospace;
-  text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
-}
-
-/* Variables */
+/* Terminal Theme */
 :root {
-  --primary: #FF00FF;     /* Neon magenta */
-  --secondary: #00FFFF;   /* Cyan */
-  --accent: #FF3366;      /* Hot pink */
-  --glow: #9933FF;        /* Purple */
-  --background: #000033;  /* Deep navy */
-}
-
-/* Layout Components */
-.background-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
-.main-content {
-  position: relative;
-  z-index: 10;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.content-grid {
-  display: flex;
-  gap: 2rem;
-}
-
-.side-panel {
-  width: 300px;
-  margin-top: 180px;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
-
-.terminal-container {
-  width: 600px;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-  border-radius: 0.5rem;
-}
-
-/* Matrix Effects */
-.matrix-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(255, 0, 255, 0.03) 0%,
-    rgba(0, 255, 255, 0.02) 50%,
-    rgba(153, 51, 255, 0.03) 100%
-  );
-  animation: deep-matrix 20s linear infinite;
-  opacity: 0.05;
-  z-index: 0;
-}
-
-.matrix-rain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.matrix-rain::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 0;
-  width: 100%;
-  height: calc(100% + 20px);
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0%,
-    rgba(255, 0, 255, 0.1) 1px,
-    transparent 2px,
-    transparent 20px
-  );
-  animation: matrix-rain 20s linear infinite;
-  opacity: 0.3;
-}
-
-/* Ambient Effects */
-.ambient-light {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(
-      circle at 30% 30%,
-      rgba(255, 0, 255, 0.05) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 70% 70%,
-      rgba(0, 255, 255, 0.05) 0%,
-      transparent 60%
-    );
-  animation: pulse-glow 8s ease-in-out infinite alternate;
-  z-index: 1;
-}
-
-/* Terminal Styles */
-.terminal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #00ff00;
-  margin-bottom: 1rem;
-  animation: glow 2s ease-in-out infinite;
-}
-
-/* Animations */
-@keyframes glow {
-  0% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-  50% { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
-  100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-}
-
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
-}
-
-@keyframes flicker {
-  0% { opacity: 0.9; }
-  5% { opacity: 0.8; }
-  10% { opacity: 0.9; }
-  15% { opacity: 0.85; }
-  20% { opacity: 0.9; }
-}
-
-@keyframes matrix-rain {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 0% 100%; }
-}
-
-@keyframes pulse-glow {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.5; }
-  100% { opacity: 0.3; }
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-
-@keyframes deep-matrix {
-  0% { transform: translateY(-100%) rotate(5deg); opacity: 0; }
-  50% { opacity: 0.05; }
-  100% { transform: translateY(100%) rotate(-5deg); opacity: 0; }
-}
-
-/* Mystical Effects */
-.mystical-glow {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-}
-
-.dreamcatcher-portal {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
-}
-
-.spirit-whispers {
-  position: absolute;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-/* Utility Classes */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+  --terminal-bg: #000913;
+  --terminal-text: #00ff9c;
+  --terminal-glow: rgba(0, 255, 156, 0.5);
+  --terminal-border: #004d2e;
+  --terminal-shadow: rgba(0, 255, 156, 0.2);
 }
 
 body {
-  background: #000033;
-  color: var(--primary);
-  font-family: 'Courier New', monospace;
-  text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+  background: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  margin: 0;
+  overflow: hidden;
 }
 
-.terminal-window {
-  background: rgba(0, 0, 33, 0.95);
-  border: 1px solid rgba(255, 0, 255, 0.2);
-  box-shadow: 
-    0 0 10px rgba(255, 0, 255, 0.1),
-    0 0 20px rgba(153, 51, 255, 0.05),
-    inset 0 0 30px rgba(0, 0, 33, 0.95);
-  backdrop-filter: blur(15px);
-  animation: neon-pulse 4s infinite;
+/* Main Terminal Container */
+.terminal-container {
   position: relative;
-  z-index: 2;
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.side-panel {
-  background: rgba(0, 0, 33, 0.8);
-  border: 1px solid rgba(255, 0, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 0 15px rgba(255, 0, 255, 0.1);
-}
-
-.glow-text {
-  color: #00ff00;
-  text-shadow: 
-    0 0 5px #00ff00,
-    0 0 10px #00ff00,
-    0 0 15px #00ff00;
-  animation: glow 2s ease-in-out infinite;
-}
-
-/* Neural Hub Theme */
-.neural-hub {
-  background: linear-gradient(180deg, #000033 0%, #000066 100%);
   min-height: 100vh;
+  padding: 20px;
+  background: 
+    linear-gradient(rgba(0, 9, 19, 0.9), rgba(0, 9, 19, 0.9)),
+    repeating-linear-gradient(0deg, 
+      rgba(0, 255, 156, 0.03) 0px,
+      rgba(0, 255, 156, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+}
+
+/* Terminal Header */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--terminal-border);
+  margin-bottom: 20px;
+}
+
+.terminal-title {
+  font-size: 24px;
+  color: var(--terminal-text);
+  text-shadow: 0 0 10px var(--terminal-glow);
+  margin: 0;
+}
+
+/* Terminal Content Layout */
+.terminal-content {
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  gap: 20px;
+  height: calc(100vh - 100px);
+}
+
+/* Side Panels */
+.terminal-panel {
+  background: rgba(0, 13, 25, 0.7);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: 
+    0 0 10px var(--terminal-shadow),
+    inset 0 0 20px rgba(0, 13, 25, 0.5);
+  overflow: auto;
+}
+
+/* Main Terminal Window */
+.terminal-main {
+  background: rgba(0, 13, 25, 0.9);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  padding: 20px;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
 
-/* Neural Energy Lines */
-.neural-grid {
-  position: fixed;
-  inset: 0;
-  background-image: 
-    linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridPulse 10s linear infinite;
+/* Terminal Input */
+.terminal-input {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 8px;
+  background: rgba(0, 13, 25, 0.5);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
 }
 
-.energy-flow {
-  position: absolute;
+.terminal-input input {
+  background: transparent;
+  border: none;
+  color: var(--terminal-text);
+  font-family: inherit;
+  font-size: 14px;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #00ffff, transparent);
-  animation: energyFlow 3s linear infinite;
-  opacity: 0.5;
+  outline: none;
 }
 
-/* Hexagonal Panels */
-.hex-panel {
-  background: rgba(0, 0, 51, 0.8);
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  transition: all 0.3s ease;
+.terminal-input::before {
+  content: '>';
+  color: var(--terminal-text);
+  margin-right: 10px;
 }
 
-.hex-panel:hover {
-  transform: scale(1.02);
-  border-color: rgba(0, 255, 255, 0.8);
-  box-shadow: 
-    0 0 20px rgba(0, 255, 255, 0.2),
-    inset 0 0 20px rgba(0, 255, 255, 0.1);
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
 }
 
-/* Neural Terminal */
-.neural-terminal {
-  background: rgba(0, 0, 33, 0.95);
-  border: 2px solid rgba(0, 255, 255, 0.3);
-  box-shadow: 
-    0 0 30px rgba(0, 255, 255, 0.1),
-    inset 0 0 50px rgba(0, 0, 66, 0.8);
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
+::-webkit-scrollbar-track {
+  background: rgba(0, 13, 25, 0.5);
 }
 
-.neural-terminal::before {
-  content: '';
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-border);
+  border-radius: 5px;
+}
+
+/* Terminal Effects */
+.scan-line {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #00ffff, transparent);
-  animation: scanline 2s linear infinite;
+  background: var(--terminal-glow);
+  opacity: 0.5;
+  animation: scan 2s linear infinite;
 }
 
-/* Data Streams */
-.data-stream {
-  position: absolute;
-  font-family: 'Courier New', monospace;
-  color: rgba(0, 255, 255, 0.5);
-  font-size: 12px;
-  animation: dataFlow 10s linear infinite;
-  white-space: nowrap;
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
 }
 
-@keyframes gridPulse {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-  100% { opacity: 0.3; }
+/* Command Buttons */
+.terminal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-@keyframes energyFlow {
-  0% { transform: translateX(-100%) translateY(100vh); }
-  100% { transform: translateX(100%) translateY(-100vh); }
+.terminal-btn {
+  background: transparent;
+  border: 1px solid var(--terminal-border);
+  color: var(--terminal-text);
+  padding: 5px 15px;
+  border-radius: 3px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-@keyframes dataFlow {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(100%); opacity: 0; }
+.terminal-btn:hover {
+  background: var(--terminal-border);
+  box-shadow: 0 0 10px var(--terminal-glow);
 }
