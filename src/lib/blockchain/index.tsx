@@ -2,19 +2,15 @@ import { Connection, PublicKey } from '@solana/web3.js';
 
 export class BlockchainService {
   private connection: Connection;
-  private _tokenAddress: string;
+  private tokenAddress: string;
 
   constructor() {
     this.connection = new Connection('https://mainnet.helius-rpc.com/?api-key=9dadbc5d-c72e-474f-8623-0b9c4e6940b7');
-    this._tokenAddress = '7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump';
+    this.tokenAddress = '7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump';
   }
 
-  get tokenAddress(): string {
-    return this._tokenAddress;
-  }
-
-  set tokenAddress(address: string) {
-    this._tokenAddress = address;
+  public setAddress(address: string): void {
+    this.tokenAddress = address;
   }
 
   async getRecentTransactions() {
