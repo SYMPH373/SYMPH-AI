@@ -24,6 +24,7 @@ export default function Home() {
 
   const handleTokenAddressChange = (address: string) => {
     setTokenAddress(address);
+    (blockchainService as any).tokenAddress = address;
   };
 
   const handleTransactionSelect = useCallback(async (signature: string) => {
