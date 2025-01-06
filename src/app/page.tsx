@@ -116,88 +116,50 @@ export default function Home() {
   }, [blockchainService, refreshTrigger]);
 
   return (
-    <div className="neural-hub">
-      <div className="neural-grid" />
-      {[...Array(5)].map((_, i) => (
-        <div 
-          key={i} 
-          className="energy-flow"
-          style={{ 
-            top: `${i * 20}%`,
-            animationDelay: `${i * 0.5}s`
-          }}
-        />
-      ))}
+    <div className="terminal-container">
+      <div className="scan-line" />
       
-      <div className="max-w-[1200px] mx-auto p-8 relative z-10">
-        <div className="flex gap-12">
-          {/* Left Neural Hub */}
-          <div className="w-[300px]">
-            <div className="hex-panel">
-              <LiveActivityFeed />
-            </div>
-          </div>
+      <header className="terminal-header">
+        <h1 className="terminal-title">SYMPH-AI Terminal v1.0</h1>
+      </header>
 
-          {/* Central Neural Terminal */}
-          <div className="flex-1">
-            <div className="neural-terminal">
-              <motion.main 
-                className="flex flex-col items-center min-h-screen p-4 relative z-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <motion.h1 
-                  className="text-4xl font-bold text-[#00ff00] mb-4 glow-text"
-                  initial={{ y: -50 }}
-                  animate={{ y: 0 }}
-                  transition={{ type: "spring", stiffness: 100 }}
-                >
-                  SYMPH-AI
-                </motion.h1>
-                
-                <div className="w-full max-w-3xl h-[calc(100vh-120px)] overflow-y-auto space-y-4 hide-scrollbar">
-                  <InteractiveTerminal 
-                    onCommand={handleCommand}
-                    onTokenAddressChange={handleTokenAddressChange}
-                    blockchainService={blockchainService}
-                    musicGenerator={musicGenerator}
-                  />
-                  
-                  <AnimatePresence>
-                    {selectedTransaction && (
-                      <>
-                        <TransactionDetails transaction={selectedTransaction} />
-                        <VisualizerSelector 
-                          isPlaying={isPlaying} 
-                          type={selectedTransaction.type}
-                          transaction={selectedTransaction.signature}
-                        />
-                        <ShareMenu transaction={selectedTransaction} />
-                      </>
-                    )}
-                  </AnimatePresence>
-                  
-                  <BlockchainExplorer 
-                    onTransactionSelect={handleTransactionSelect}
-                    blockchainService={blockchainService}
-                    refreshTrigger={refreshTrigger}
-                  />
-                </div>
-              </motion.main>
-              <CommandHelp />
-              <div className="fixed top-4 right-4">
-                <VolumeControl onChange={handleVolumeChange} />
-              </div>
-            </div>
-          </div>
+      <div className="terminal-content">
+        {/* Left Panel */}
+        <div className="terminal-panel">
+          <LiveActivityFeed />
+        </div>
 
-          {/* Right Neural Hub */}
-          <div className="w-[300px]">
-            <div className="hex-panel">
-              <NetworkStats />
+        {/* Main Terminal */}
+        <div className="terminal-main">
+          <InteractiveTerminal 
+            onCommand={handleCommand}
+            onTokenAddressChange={handleTokenAddressChange}
+            blockchainService={blockchainService}
+            musicGenerator={musicGenerator}
+          />
+          
+          {selectedTransaction && (
+            <div className="terminal-transaction">
+              <TransactionDetails transaction={selectedTransaction} />
+              <VisualizerSelector 
+                isPlaying={isPlaying} 
+                type={selectedTransaction.type}
+                transaction={selectedTransaction.signature}
+              />
             </div>
-          </div>
+          )}
+          
+          <BlockchainExplorer 
+            onTransactionSelect={handleTransactionSelect}
+            blockchainService={blockchainService}
+            refreshTrigger={refreshTrigger}
+          />
+        </div>
+
+        {/* Right Panel */}
+        <div className="terminal-panel">
+          <NetworkStats />
+          <VolumeControl onChange={handleVolumeChange} className="terminal-volume" />
         </div>
       </div>
     </div>
