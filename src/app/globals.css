@@ -192,7 +192,8 @@ body {
 }
 
 .terminal-text-dim {
-  color: var(--terminal-dim);
+  color: #0cff92;  /* Bright cyber green */
+  opacity: 0.7;
 }
 
 .terminal-text-accent {
@@ -250,29 +251,56 @@ body {
 }
 
 /* Transaction Details Styling */
+.transaction-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(0, 13, 25, 0.8);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
 .transaction-field {
-  margin: 4px 0;
+  display: flex;
+  gap: 12px;
   font-family: 'JetBrains Mono', monospace;
+  width: 100%;
+  justify-content: center;
 }
 
 .transaction-signature {
-  color: #ff00ff; /* Magenta */
+  color: #ff3399;  /* Neon pink */
+  text-shadow: 0 0 10px rgba(255, 51, 153, 0.5);
 }
 
 .transaction-type {
-  color: #00ffff; /* Cyan */
+  color: #00ffff;  /* Cyan */
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 .transaction-status {
-  color: #00ff00; /* Green */
+  color: #00ff00;  /* Lime */
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .transaction-timestamp {
-  color: #ffff00; /* Yellow */
+  color: #ffcc00;  /* Gold */
+  text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
 }
 
 .transaction-fee {
-  color: #ff9900; /* Orange */
+  color: #ff9900;  /* Orange */
+  text-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+}
+
+/* Add hover effect */
+.transaction-field:hover span:not(.terminal-text-dim) {
+  filter: brightness(1.2);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
 }
 
 /* Visualizer buttons styling */
