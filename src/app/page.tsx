@@ -23,10 +23,15 @@ export default function Home() {
   const blockchainService = useMemo(() => new BlockchainService(), []);
   const musicGenerator = useMemo(() => new MusicGenerator(), []);
 
-  const handleTokenAddressChange = (address: string) => {
+  const handleTokenAddressChange = async (address: string) => {
+    console.log('Changing token address to:', address);
     setTokenAddress(address);
     (blockchainService as any).tokenAddress = address;
-    setRefreshTrigger(prev => prev + 1); // Force refresh
+    setRefreshTrigger(prev => prev + 1);
+    
+    // Force an immediate refresh
+    const transactions = await blockchainService.getRecentTransactions();
+    console.log('Initial transactions after change:', transactions);
   };
 
   const handleTransactionSelect = useCallback(async (signature: string) => {
