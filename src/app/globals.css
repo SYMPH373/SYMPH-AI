@@ -333,14 +333,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  margin: 20px 0;
+  gap: 16px;
+  width: 100%;
+  padding: 20px;
+  background: rgba(0, 13, 25, 0.8);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  margin: 20px auto;
 }
 
 .visualizer-buttons {
   display: flex;
   justify-content: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .visualizer-btn {
@@ -353,23 +359,75 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   border-radius: 4px;
-}
-
-.visualizer-btn:hover {
-  background: var(--terminal-border);
-  box-shadow: 0 0 15px var(--terminal-glow);
-  border-color: var(--terminal-text);
-}
-
-.visualizer-btn.active {
-  background: var(--terminal-text);
-  color: var(--terminal-bg);
-  box-shadow: 0 0 20px var(--terminal-glow);
+  min-width: 120px;
+  text-align: center;
 }
 
 .sound-visualization {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation for active visualizer */
+.visualizer-btn.active {
+  background: var(--terminal-text);
+  color: var(--terminal-bg);
+  box-shadow: 
+    0 0 20px var(--terminal-glow),
+    inset 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Recent Transactions Styling */
+.recent-transactions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+  background: rgba(0, 13, 25, 0.8);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.transaction-list {
+  width: 100%;
+  max-width: 800px;
   text-align: center;
+}
+
+.transaction-item {
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--terminal-text);
+  opacity: 0.8;
+}
+
+.transaction-item:hover {
+  background: rgba(12, 255, 146, 0.1);
+  border-color: var(--terminal-border);
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.transaction-loading {
+  color: #ff3399;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
 }
