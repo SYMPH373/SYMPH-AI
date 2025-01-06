@@ -10,7 +10,7 @@ export class BlockchainService {
   async getRecentTransactions() {
     try {
       // Use a known program ID, like Token Program
-      const tokenProgramId = new PublicKey('AUxHAWUDaUVxsKmdU9sFoYbaccDrV8uaRuXvdS19pump');
+      const tokenProgramId = new PublicKey('7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump');
       
       const signatures = await this.connection.getSignaturesForAddress(
         tokenProgramId,
