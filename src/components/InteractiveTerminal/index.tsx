@@ -4,19 +4,34 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BlockchainService } from '@/lib/blockchain';
 import { MusicGenerator } from '@/lib/music';
+import { WaveVisualizer } from '../WaveVisualizer';
 
 interface Props {
   onCommand: (command: string) => void;
   onTokenAddressChange: (address: string) => Promise<string>;
   blockchainService: BlockchainService;
   musicGenerator: MusicGenerator;
+  transaction?: any;
+  isPlaying?: boolean;
+  type?: string;
+  visualizers?: Array<{ name: string; component: React.ComponentType<any> }>;
+  currentVisualizer?: number;
+  setCurrentVisualizer?: (index: number) => void;
+  transactions?: any[];
 }
 
 export function InteractiveTerminal({ 
   onCommand, 
   onTokenAddressChange, 
   blockchainService,
-  musicGenerator 
+  musicGenerator,
+  transaction = {},
+  isPlaying = false,
+  type = '',
+  visualizers = [],
+  currentVisualizer = 0,
+  setCurrentVisualizer = () => {},
+  transactions = [],
 }: Props) {
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState<string[]>(['Welcome to SYMPH-AI v1.0 | 7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump', 'Type "help" for available commands']);
@@ -135,24 +150,81 @@ export function InteractiveTerminal({
     inputRef.current?.focus();
   }, []);
 
+  const CurrentComponent = visualizers[currentVisualizer]?.component || WaveVisualizer;
+
   return (
-    <div className="terminal-welcome">
-      <div className="terminal-welcome-title">
-        Welcome to SYMPH-AI v1.0
-      </div>
-      <div className="terminal-welcome-address">
-        {blockchainService.tokenAddress}
-      </div>
-      <div className="terminal-input-container">
-        <div className="terminal-input">
+    <div className="terminal-interface">
+      {/* Header */}
+      <div className="terminal-header">
+        <h1 className="terminal-title">Welcome to SYMPH-AI v1.0</h1>
+        <div className="terminal-address">{blockchainService.tokenAddress}</div>
+        <div className="terminal-input-wrapper">
           <input
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type 'help' for available commands"
-            spellCheck="false"
+            className="terminal-input"
           />
+        </div>
+      </div>
+
+      {/* Transaction Details */}
+      <div className="transaction-panel">
+        <div className="transaction-field">
+          <span>signature:</span>
+          <span>{transaction.signature}</span>
+        </div>
+        <div className="transaction-field">
+          <span>type:</span>
+          <span>{transaction.type}</span>
+        </div>
+        <div className="transaction-field">
+          <span>status:</span>
+          <span>{transaction.status}</span>
+        </div>
+        <div className="transaction-field">
+          <span>timestamp:</span>
+          <span>{transaction.timestamp}</span>
+        </div>
+        <div className="transaction-field">
+          <span>fee:</span>
+          <span>{transaction.fee} SOL</span>
+        </div>
+      </div>
+
+      {/* Visualizer */}
+      <div className="visualizer-panel">
+        <div className="visualizer-buttons">
+          {visualizers.map((v, i) => (
+            <button 
+              key={v.name}
+              className={`visualizer-btn ${currentVisualizer === i ? 'active' : ''}`}
+              onClick={() => setCurrentVisualizer(i)}
+            >
+              {v.name}
+            </button>
+          ))}
+        </div>
+        <div className="visualizer-display">
+          <CurrentComponent 
+            isPlaying={isPlaying} 
+            type={type} 
+            transaction={transaction}
+          />
+        </div>
+      </div>
+
+      {/* Recent Transactions */}
+      <div className="transactions-panel">
+        <h2 className="panel-title">Recent Transactions</h2>
+        <div className="transactions-list">
+          {transactions.map(tx => (
+            <div key={tx.signature} className="transaction-item">
+              {tx.signature}
+            </div>
+          ))}
         </div>
       </div>
     </div>
