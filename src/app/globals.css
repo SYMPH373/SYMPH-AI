@@ -51,6 +51,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-height: calc(100vh - 32px);
 }
 
 /* Terminal Welcome */
@@ -217,4 +218,61 @@ body {
 .visualizer-btn.active {
   background: #0cff92;
   color: #000913;
+}
+
+/* Transaction Details Container */
+.transaction-details-container {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Visualizer Container */
+.visualizer-container {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Recent Transactions Container */
+.recent-transactions-container {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow-y: auto;
+  max-height: 300px; /* Adjust this value as needed */
+}
+
+/* Adjust spacing between sections */
+.transaction-details,
+.visualizer-controls,
+.recent-transactions {
+  margin: 12px auto;
+  padding: 16px;
+  background: rgba(0, 13, 25, 0.95);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* Ensure content doesn't overflow horizontally */
+.transaction-field,
+.transaction-item {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Add padding to prevent scrollbar overlap */
+.terminal-main::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 8px;
+}
+
+.terminal-main {
+  padding-right: 24px; /* Extra padding for scrollbar */
 }
