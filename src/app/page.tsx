@@ -18,8 +18,13 @@ import { NetworkStats } from '@/components/NetworkStats';
 export default function Home() {
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const blockchainService = new BlockchainService();
+  const [tokenAddress, setTokenAddress] = useState<string>('7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump');
+  const blockchainService = useMemo(() => new BlockchainService(tokenAddress), [tokenAddress]);
   const musicGenerator = useMemo(() => new MusicGenerator(), []);
+
+  const handleTokenAddressChange = (address: string) => {
+    setTokenAddress(address);
+  };
 
   const handleTransactionSelect = useCallback(async (signature: string) => {
     const transaction = await blockchainService.getTransaction(signature);
@@ -101,7 +106,10 @@ export default function Home() {
               </motion.h1>
               
               <div className="w-full max-w-3xl h-[calc(100vh-120px)] overflow-y-auto space-y-4 hide-scrollbar">
-                <InteractiveTerminal onCommand={handleCommand} />
+                <InteractiveTerminal 
+                  onCommand={handleCommand} 
+                  onTokenAddressChange={handleTokenAddressChange}
+                />
                 
                 <AnimatePresence>
                   {selectedTransaction && (
