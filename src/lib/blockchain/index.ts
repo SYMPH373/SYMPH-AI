@@ -6,14 +6,25 @@ export class BlockchainService {
 
   async getRecentTransactions() {
     try {
+      // Validate address format
+      try {
+        new PublicKey(this.tokenAddress);
+      } catch {
+        throw new Error('Invalid token address format');
+      }
+
       const response = await fetch('/api/transactions', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({ tokenAddress: this.tokenAddress })  // Send token address to API
       });
 
       const data = await response.json();
+      if (!data || data.length === 0) {
+        throw new Error('No transactions found for this address');
+      }
       return data;
     } catch (error) {
       console.error('Error fetching recent transactions:', error);
