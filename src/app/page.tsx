@@ -126,7 +126,10 @@ export default function Home() {
                   )}
                 </AnimatePresence>
                 
-                <BlockchainExplorer onTransactionSelect={handleTransactionSelect} />
+                <BlockchainExplorer 
+                  onTransactionSelect={handleTransactionSelect}
+                  blockchainService={blockchainService}
+                />
               </div>
             </motion.main>
             <CommandHelp />
