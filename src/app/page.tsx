@@ -26,10 +26,6 @@ export default function Home() {
     setTokenAddress(address);
   };
 
-  useEffect(() => {
-    blockchainService.constructor(tokenAddress);
-  }, [tokenAddress]);
-
   const handleTransactionSelect = useCallback(async (signature: string) => {
     const transaction = await blockchainService.getTransaction(signature);
     setSelectedTransaction(transaction);
