@@ -48,7 +48,7 @@ export default function Home() {
       console.error('Invalid address format:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       const terminalOutput = `Error: ${errorMessage}. Please provide a valid Solana token address.`;
-      handleCommand(terminalOutput);
+      console.error(terminalOutput);
     }
   };
 
@@ -84,10 +84,9 @@ export default function Home() {
         }
         break;
       case 'refresh':
-        // Refresh transaction list
+        setRefreshTrigger(prev => prev + 1);
         break;
       case 'share':
-        // Copy share link to clipboard
         if (selectedTransaction) {
           await navigator.clipboard.writeText(
             `${window.location.origin}?tx=${selectedTransaction.signature}`
