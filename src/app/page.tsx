@@ -48,7 +48,9 @@ export default function Home() {
       console.error('Invalid address format:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       const terminalOutput = `Error: ${errorMessage}. Please provide a valid Solana token address.`;
-      console.error(terminalOutput);
+      if (handleCommand) {
+        handleCommand(terminalOutput);
+      }
     }
   };
 
@@ -77,6 +79,11 @@ export default function Home() {
   }, [selectedTransaction, handleTransactionSelect]);
 
   const handleCommand = async (command: string) => {
+    if (command.startsWith('Error:')) {
+      // Pass error messages directly to the terminal
+      return;
+    }
+
     switch (command.toLowerCase()) {
       case 'play':
         if (selectedTransaction) {
