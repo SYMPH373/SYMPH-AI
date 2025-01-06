@@ -19,6 +19,12 @@ export const InteractiveTerminal = ({ onCommand, onTokenAddressChange }: Interac
     const newOutput = [...output, `$ ${cmd}`];
     const [command, ...args] = cmd.toLowerCase().split(' ');
     
+    if (cmd.startsWith('Error:')) {
+      newOutput.push(`\x1b[31m${cmd}\x1b[0m`); // Red color for errors
+      setOutput(newOutput);
+      return;
+    }
+    
     switch (command) {
       case 'help':
         newOutput.push(
