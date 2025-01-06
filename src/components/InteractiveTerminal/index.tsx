@@ -136,35 +136,25 @@ export function InteractiveTerminal({
   }, []);
 
   return (
-    <motion.div
-      className="terminal-window w-full max-w-3xl mx-auto mb-4"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
-      <div className="flex items-center p-2 border-b border-neon-blue/20">
-        <div className="w-3 h-3 rounded-full bg-red-500 mr-2" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2" />
-        <div className="w-3 h-3 rounded-full bg-green-500" />
-        <span className="ml-4 text-[#00ff00]">Terminal</span>
+    <div className="terminal-welcome">
+      <div className="terminal-welcome-title">
+        Welcome to SYMPH-AI v1.0
       </div>
-
-      <div className="p-4 font-mono text-sm">
-        {output.map((line, i) => (
-          <div key={i} className="text-[#00ff00] whitespace-pre-wrap">{line}</div>
-        ))}
-        <div className="flex items-center">
-          <span className="text-[#00ff00] mr-2">$</span>
+      <div className="terminal-welcome-address">
+        {blockchainService.tokenAddress}
+      </div>
+      <div className="terminal-input-container">
+        <div className="terminal-input">
           <input
-            ref={inputRef}
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent border-none outline-none text-[#00ff00] focus:ring-0"
-            autoFocus
+            placeholder="Type 'help' for available commands"
+            spellCheck="false"
           />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 } 
