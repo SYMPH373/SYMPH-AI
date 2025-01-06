@@ -26,16 +26,16 @@ export default function Home() {
 
   const handleTokenAddressChange = async (address: string) => {
     try {
-      // Clean up the address string
       const cleanAddress = address.trim();
       
-      // Validate address format
-      const pubKey = new PublicKey(cleanAddress);
-      if (!pubKey) throw new Error('Invalid public key');
+      // Basic format check before attempting PublicKey creation
+      if (!cleanAddress.match(/^[A-HJ-NP-Za-km-z1-9]{32,44}$/)) {
+        throw new Error('Invalid address format - must be base58 encoded');
+      }
       
-      console.log('Changing token address to:', cleanAddress);
+      // Use the BlockchainService's setAddress method
+      blockchainService.tokenAddress = cleanAddress;
       setTokenAddress(cleanAddress);
-      (blockchainService as any).tokenAddress = cleanAddress;
       setRefreshTrigger(prev => prev + 1);
       
       // Force an immediate refresh
@@ -43,23 +43,12 @@ export default function Home() {
       if (transactions.length === 0) {
         throw new Error('No transactions found for this address');
       }
-      console.log('Initial transactions after change:', transactions);
+      
+      return `Successfully changed token address to ${cleanAddress}`;
     } catch (error) {
-      console.error('Invalid address format:', error);
+      console.error('Token address error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      const terminalOutput = `Error: ${errorMessage}. Please provide a valid Solana token address.`;
-      const terminalComponent = document.querySelector('input[type="text"]') as HTMLInputElement;
-      if (terminalComponent) {
-        const event = new KeyboardEvent('keydown', {
-          key: 'Enter',
-          code: 'Enter',
-          which: 13,
-          keyCode: 13,
-          bubbles: true
-        });
-        terminalComponent.value = terminalOutput;
-        terminalComponent.dispatchEvent(event);
-      }
+      throw new Error(`Error: ${errorMessage}`);
     }
   };
 
