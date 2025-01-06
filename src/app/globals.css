@@ -122,3 +122,99 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #0cff92;
 }
+
+/* Transaction Details */
+.transaction-details {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 16px;
+  background: rgba(0, 13, 25, 0.95);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.transaction-field {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+/* Recent Transactions */
+.recent-transactions {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 16px;
+  background: rgba(0, 13, 25, 0.95);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+}
+
+.recent-transactions-title {
+  text-align: center;
+  color: #0cff92;
+  margin-bottom: 16px;
+}
+
+.transaction-list {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding-right: 8px;
+}
+
+.transaction-item {
+  text-align: center;
+  padding: 8px 16px;
+  margin: 4px 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.transaction-item:hover {
+  background: rgba(12, 255, 146, 0.1);
+  border-color: #004d2e;
+}
+
+/* Visualizer Controls */
+.visualizer-controls {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 16px;
+  background: rgba(0, 13, 25, 0.95);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+}
+
+.visualizer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.visualizer-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #004d2e;
+  color: #0cff92;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.visualizer-btn:hover {
+  background: rgba(12, 255, 146, 0.1);
+  border-color: #0cff92;
+}
+
+.visualizer-btn.active {
+  background: #0cff92;
+  color: #000913;
+}
