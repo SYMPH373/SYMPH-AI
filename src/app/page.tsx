@@ -48,8 +48,17 @@ export default function Home() {
       console.error('Invalid address format:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       const terminalOutput = `Error: ${errorMessage}. Please provide a valid Solana token address.`;
-      if (handleCommand) {
-        handleCommand(terminalOutput);
+      const terminalComponent = document.querySelector('input[type="text"]') as HTMLInputElement;
+      if (terminalComponent) {
+        const event = new KeyboardEvent('keydown', {
+          key: 'Enter',
+          code: 'Enter',
+          which: 13,
+          keyCode: 13,
+          bubbles: true
+        });
+        terminalComponent.value = terminalOutput;
+        terminalComponent.dispatchEvent(event);
       }
     }
   };
