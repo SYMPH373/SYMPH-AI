@@ -9,7 +9,7 @@ export class BlockchainService {
     this.tokenAddress = tokenAddress || '7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump';
   }
 
-  setTokenAddress(address: string) {
+  public setTokenAddress(address: string): void {
     this.tokenAddress = address;
   }
 
