@@ -1,4 +1,5 @@
 import { DNASequence, Mutation } from '../blockchain/TransactionDNA';
+import { QuantumHarmonics, QuantumState } from '../quantum/QuantumHarmonics';
 
 export interface IMusicGenerator {
   audioContext: AudioContext;
@@ -13,10 +14,12 @@ export interface IMusicGenerator {
 export class MusicGenerator implements IMusicGenerator {
   audioContext: AudioContext;
   private tracks: Map<string, GainNode>;
+  private quantumHarmonics: QuantumHarmonics;
 
   constructor() {
     this.audioContext = new AudioContext();
     this.tracks = new Map();
+    this.quantumHarmonics = new QuantumHarmonics();
   }
 
   hashToNotes(hash: string): number[] {
@@ -127,5 +130,85 @@ export class MusicGenerator implements IMusicGenerator {
       oscillator.start(i * duration);
       oscillator.stop((i + 1) * duration);
     });
+  }
+
+  async playQuantumHarmonics(transaction: any) {
+    const quantumState = this.quantumHarmonics.generateQuantumState(transaction);
+    
+    // Create oscillators for each superposition state
+    const oscillators = {
+      melody: this.createQuantumOscillator('sine'),
+      harmony: this.createQuantumOscillator('triangle'),
+      rhythm: this.createQuantumOscillator('square')
+    };
+
+    // Apply quantum properties
+    const masterGain = this.audioContext.createGain();
+    masterGain.gain.value = quantumState.amplitude;
+    
+    // Create quantum effects
+    const phaseNode = this.createPhaseEffect(quantumState.phase);
+    const entanglementNode = this.createEntanglementEffect(quantumState.entanglement);
+
+    // Play superposition states
+    await this.playQuantumSuperposition(
+      oscillators,
+      quantumState.superposition,
+      masterGain,
+      phaseNode,
+      entanglementNode
+    );
+  }
+
+  private createQuantumOscillator(type: OscillatorType) {
+    const osc = this.audioContext.createOscillator();
+    osc.type = type;
+    return osc;
+  }
+
+  private createPhaseEffect(phase: number) {
+    const phaser = this.audioContext.createBiquadFilter();
+    phaser.type = 'allpass';
+    phaser.frequency.value = 1000 * phase;
+    return phaser;
+  }
+
+  private createEntanglementEffect(entanglement: number) {
+    const delay = this.audioContext.createDelay();
+    delay.delayTime.value = entanglement * 0.5;
+    return delay;
+  }
+
+  private async playQuantumSuperposition(
+    oscillators: Record<string, OscillatorNode>,
+    superposition: QuantumState['superposition'],
+    masterGain: GainNode,
+    phaseNode: BiquadFilterNode,
+    entanglementNode: DelayNode
+  ) {
+    const duration = 0.2;
+    const now = this.audioContext.currentTime;
+
+    // Connect the quantum audio graph
+    Object.entries(oscillators).forEach(([type, osc], i) => {
+      const frequencies = superposition[type as keyof typeof superposition];
+      
+      osc.connect(phaseNode)
+         .connect(entanglementNode)
+         .connect(masterGain)
+         .connect(this.audioContext.destination);
+
+      // Schedule frequency changes
+      frequencies.forEach((freq, j) => {
+        osc.frequency.setValueAtTime(freq, now + (j * duration));
+      });
+
+      osc.start(now);
+      osc.stop(now + (frequencies.length * duration));
+    });
+
+    return new Promise(resolve => 
+      setTimeout(resolve, (superposition.melody.length * duration * 1000))
+    );
   }
 } 
