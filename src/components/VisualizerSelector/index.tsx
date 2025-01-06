@@ -28,38 +28,41 @@ export const VisualizerSelector = ({ isPlaying, type, transaction }: VisualizerS
   const CurrentComponent = visualizers[currentVisualizer].component;
 
   return (
-    <div className="space-y-4">
-      <div className="terminal-window p-2 flex justify-center gap-2">
-        {visualizers.map((visualizer, index) => (
-          <button
-            key={visualizer.name}
-            onClick={() => setCurrentVisualizer(index)}
-            className={`px-4 py-2 border ${
-              currentVisualizer === index
-                ? 'border-[var(--primary)] text-[var(--primary)]'
-                : 'border-[var(--primary)]/30 text-[var(--primary)]/50'
-            } hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors duration-300`}
-          >
-            {visualizer.name}
-          </button>
-        ))}
+    <div className="visualizer-controls">
+      <div className="visualizer-buttons">
+        <button className={`visualizer-btn ${currentVisualizer === 0 ? 'active' : ''}`}>
+          $ wave_2d
+        </button>
+        <button className={`visualizer-btn ${currentVisualizer === 1 ? 'active' : ''}`}>
+          $ wave_3d
+        </button>
+        <button className={`visualizer-btn ${currentVisualizer === 2 ? 'active' : ''}`}>
+          $ circular
+        </button>
+        <button className={`visualizer-btn ${currentVisualizer === 3 ? 'active' : ''}`}>
+          $ matrix
+        </button>
+        <button className={`visualizer-btn ${currentVisualizer === 4 ? 'active' : ''}`}>
+          $ frequency
+        </button>
       </div>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentVisualizer}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-        >
-          <CurrentComponent 
-            isPlaying={isPlaying} 
-            type={type} 
-            transaction={transaction}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <div className="sound-visualization">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentVisualizer}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CurrentComponent 
+              isPlaying={isPlaying} 
+              type={type} 
+              transaction={transaction}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }; 
