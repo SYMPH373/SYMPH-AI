@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 
 interface VolumeControlProps {
   onChange: (volume: number) => void;
+  className?: string;
 }
 
-export const VolumeControl = ({ onChange }: VolumeControlProps) => {
+export function VolumeControl({ onChange, className = '' }: VolumeControlProps) {
   const [volume, setVolume] = useState(0.5);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,4 +50,4 @@ export const VolumeControl = ({ onChange }: VolumeControlProps) => {
       )}
     </div>
   );
-}; 
+} 
