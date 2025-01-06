@@ -9,12 +9,30 @@ export class BlockchainService {
     this.tokenAddress = '7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump';
   }
 
+  private isValidBase58(address: string): boolean {
+    try {
+      new PublicKey(address);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   public setAddress(address: string): void {
+    if (!this.isValidBase58(address)) {
+      console.error('Invalid address format. Must be base58 encoded.');
+      return;
+    }
     this.tokenAddress = address;
   }
 
   async getRecentTransactions() {
     try {
+      if (!this.isValidBase58(this.tokenAddress)) {
+        console.error('Invalid token address format');
+        return [];
+      }
+
       console.log('Fetching transactions for address:', this.tokenAddress);
       const tokenProgramId = new PublicKey(this.tokenAddress);
       
