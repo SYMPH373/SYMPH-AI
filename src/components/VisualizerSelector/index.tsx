@@ -30,30 +30,24 @@ export const VisualizerSelector = ({ isPlaying, type, transaction }: VisualizerS
   return (
     <div className="visualizer-controls">
       <div className="visualizer-buttons">
-        <button className={`visualizer-btn ${currentVisualizer === 0 ? 'active' : ''}`}>
-          $ wave_2d
-        </button>
-        <button className={`visualizer-btn ${currentVisualizer === 1 ? 'active' : ''}`}>
-          $ wave_3d
-        </button>
-        <button className={`visualizer-btn ${currentVisualizer === 2 ? 'active' : ''}`}>
-          $ circular
-        </button>
-        <button className={`visualizer-btn ${currentVisualizer === 3 ? 'active' : ''}`}>
-          $ matrix
-        </button>
-        <button className={`visualizer-btn ${currentVisualizer === 4 ? 'active' : ''}`}>
-          $ frequency
-        </button>
+        {visualizers.map((visualizer, index) => (
+          <button
+            key={visualizer.name}
+            onClick={() => setCurrentVisualizer(index)}
+            className={`visualizer-btn ${currentVisualizer === index ? 'active' : ''}`}
+          >
+            {visualizer.name}
+          </button>
+        ))}
       </div>
       <div className="sound-visualization">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentVisualizer}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
           >
             <CurrentComponent 
               isPlaying={isPlaying} 
