@@ -21,18 +21,14 @@ body {
   max-width: 900px;
   margin: 0 auto;
   padding: 16px;
-  height: 100vh;
-  overflow-y: auto;
 }
 
 .terminal-header {
   text-align: center;
-  margin-bottom: 24px;
 }
 
 .terminal-title {
   color: #0cff92;
-  font-size: 1.2em;
   margin-bottom: 8px;
 }
 
@@ -45,92 +41,37 @@ body {
 .terminal-input-wrapper {
   max-width: 600px;
   margin: 0 auto;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
 }
 
 .terminal-input {
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid #004d2e;
-  padding: 8px 12px;
+  background: transparent;
+  border: none;
   color: #0cff92;
-  border-radius: 4px;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.transaction-panel {
+.panel {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid #004d2e;
   border-radius: 4px;
   padding: 16px;
-}
-
-.transaction-field {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  border-bottom: 1px solid rgba(0, 77, 46, 0.3);
-}
-
-.visualizer-panel {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid #004d2e;
-  border-radius: 4px;
-  padding: 16px;
-}
-
-.visualizer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
   margin-bottom: 16px;
 }
 
-.visualizer-btn {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid #004d2e;
-  color: #0cff92;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.visualizer-btn.active {
-  background: #0cff92;
-  color: #000913;
-}
-
 .visualizer-display {
-  height: 200px;
+  height: 180px;
   margin-top: 16px;
 }
 
-.transactions-panel {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid #004d2e;
-  border-radius: 4px;
-  padding: 16px;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.panel-title {
-  color: #0cff92;
-  font-size: 0.9em;
-  margin-bottom: 12px;
-  text-align: center;
-}
-
 .transactions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.transaction-item {
-  padding: 4px 8px;
-  font-size: 0.8em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 /* Scrollbar */
@@ -146,3 +87,4 @@ body {
   background: #004d2e;
   border-radius: 2px;
 }
+
