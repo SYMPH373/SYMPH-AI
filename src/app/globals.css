@@ -19,17 +19,9 @@ body {
 
 /* Main Terminal Container */
 .terminal-container {
-  position: relative;
   min-height: 100vh;
-  padding: 20px;
-  background: 
-    linear-gradient(rgba(0, 9, 19, 0.9), rgba(0, 9, 19, 0.9)),
-    repeating-linear-gradient(0deg, 
-      rgba(0, 255, 156, 0.03) 0px,
-      rgba(0, 255, 156, 0.03) 1px,
-      transparent 1px,
-      transparent 2px
-    );
+  overflow: hidden;
+  background: var(--terminal-bg);
 }
 
 /* Terminal Header */
@@ -53,21 +45,24 @@ body {
   display: grid;
   grid-template-columns: 300px minmax(600px, 1fr) 300px;
   gap: 24px;
-  height: calc(100vh - 80px);
-  max-width: 1600px;
+  padding: 20px;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 20px 40px;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Terminal Main Area */
 .terminal-main {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 24px;
   background: rgba(0, 13, 25, 0.95);
   border: 1px solid var(--terminal-border);
   border-radius: 8px;
+  padding: 20px;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Welcome Section */
@@ -127,11 +122,11 @@ body {
 
 /* Visualizer Section */
 .visualizer-controls {
-  margin: 16px 0;
-  padding: 16px;
+  margin: 20px 0;
+  padding: 20px;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--terminal-border);
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .visualizer-buttons {
@@ -149,11 +144,12 @@ body {
 
 /* Side Panels */
 .terminal-panel {
-  padding: 20px;
   background: rgba(0, 13, 25, 0.95);
   border: 1px solid var(--terminal-border);
   border-radius: 8px;
-  height: fit-content;
+  padding: 20px;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
 }
 
 /* Terminal Input */
@@ -175,16 +171,22 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 13, 25, 0.5);
+  background: rgba(0, 13, 25, 0.3);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--terminal-border);
-  border-radius: 5px;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-text);
 }
 
 /* Terminal Effects */
@@ -459,36 +461,20 @@ body {
 }
 
 .transaction-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  overflow-y: auto;
+  max-height: 300px;
+  padding-right: 10px;
 }
 
 .transaction-item {
-  width: 100%;
-  max-width: 100%; /* Changed from fixed width */
-  padding: 8px 16px;
+  padding: 8px;
   margin: 4px 0;
   border: 1px solid transparent;
   border-radius: 4px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--terminal-text);
-  opacity: 0.8;
-  text-align: left;
+  font-size: 0.9em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  box-sizing: border-box;
-}
-
-.transaction-item:hover {
-  background: rgba(12, 255, 146, 0.1);
-  border-color: var(--terminal-border);
-  opacity: 1;
-  transform: translateX(4px);
 }
 
 .transaction-loading {
