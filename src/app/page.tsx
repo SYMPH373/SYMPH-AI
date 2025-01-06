@@ -28,9 +28,11 @@ export default function Home() {
     try {
       const cleanAddress = address.trim();
       
-      // Basic format check
-      if (!cleanAddress.match(/^[A-HJ-NP-Za-km-z1-9]{32,44}$/)) {
-        throw new Error('Invalid address format - must be base58 encoded');
+      // Validate using PublicKey
+      try {
+        new PublicKey(cleanAddress);
+      } catch {
+        throw new Error('Invalid Solana address format');
       }
       
       blockchainService.tokenAddress = cleanAddress;
