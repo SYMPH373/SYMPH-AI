@@ -48,56 +48,115 @@ body {
   margin: 0;
 }
 
-/* Terminal Content Layout */
+/* Main Terminal Container */
 .terminal-content {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr) 250px;
-  gap: 20px;
-  height: calc(100vh - 100px);
-  max-width: 1400px;
+  grid-template-columns: 300px minmax(600px, 1fr) 300px;
+  gap: 24px;
+  height: calc(100vh - 80px);
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px 40px;
+}
+
+/* Terminal Main Area */
+.terminal-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: rgba(0, 13, 25, 0.95);
+  border: 1px solid var(--terminal-border);
+  border-radius: 8px;
+}
+
+/* Welcome Section */
+.terminal-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.terminal-welcome-title {
+  color: #0cff92;
+  font-size: 1.2em;
+  text-shadow: 0 0 10px rgba(12, 255, 146, 0.5);
+}
+
+.terminal-welcome-address {
+  color: #ff00ff;
+  font-size: 0.9em;
+}
+
+/* Input Area */
+.terminal-input-container {
+  margin: 8px 0;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+}
+
+.terminal-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+}
+
+/* Transaction Details */
+.transaction-details {
+  margin: 16px 0;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+}
+
+.transaction-field {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 0.9em;
+}
+
+/* Visualizer Section */
+.visualizer-controls {
+  margin: 16px 0;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+}
+
+.visualizer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.visualizer-btn {
+  padding: 6px 12px;
+  min-width: 100px;
+  font-size: 0.9em;
 }
 
 /* Side Panels */
 .terminal-panel {
-  background: rgba(0, 13, 25, 0.9);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-  padding: 15px;
-  box-shadow: 
-    0 0 15px var(--terminal-shadow),
-    inset 0 0 30px rgba(0, 13, 25, 0.8);
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-/* Main Terminal Window */
-.terminal-main {
-  background: rgba(0, 13, 25, 0.9);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
   padding: 20px;
-  position: relative;
-  overflow: auto;
-  width: 100%;
-  min-width: 0; /* Prevents content from overflowing */
+  background: rgba(0, 13, 25, 0.95);
+  border: 1px solid var(--terminal-border);
+  border-radius: 8px;
+  height: fit-content;
 }
 
 /* Terminal Input */
-.terminal-input {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  padding: 8px;
-  background: rgba(0, 13, 25, 0.8);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
-}
-
 .terminal-input input {
   background: transparent;
   border: none;
