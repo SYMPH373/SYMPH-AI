@@ -136,6 +136,13 @@ export default function Home() {
             onTokenAddressChange={handleTokenAddressChange}
             blockchainService={blockchainService}
             musicGenerator={musicGenerator}
+            transaction={{}}
+            isPlaying={false}
+            type=""
+            visualizers={[]}
+            currentVisualizer={0}
+            setCurrentVisualizer={() => {}}
+            transactions={recentTransactions}
           />
           
           {selectedTransaction && (
