@@ -431,3 +431,63 @@ body {
   50% { opacity: 1; }
   100% { opacity: 0.5; }
 }
+
+/* Terminal Welcome Section */
+.terminal-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.terminal-welcome-title {
+  color: var(--terminal-text);
+  font-size: 1.2em;
+  text-shadow: 0 0 10px var(--terminal-glow);
+}
+
+.terminal-welcome-address {
+  color: var(--terminal-accent);
+  font-family: 'JetBrains Mono', monospace;
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+}
+
+/* Terminal Input Container */
+.terminal-input-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+  background: rgba(0, 13, 25, 0.8);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+}
+
+.terminal-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+}
+
+.terminal-input input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--terminal-text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  outline: none;
+}
+
+.terminal-input::before {
+  content: '>';
+  color: var(--terminal-text);
+  margin-right: 12px;
+  font-weight: bold;
+}
