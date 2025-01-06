@@ -2,13 +2,22 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { BlockchainService } from '@/lib/blockchain';
+import { MusicGenerator } from '@/lib/music';
 
 interface Props {
   onCommand: (command: string) => void;
   onTokenAddressChange: (address: string) => Promise<string>;
+  blockchainService: BlockchainService;
+  musicGenerator: MusicGenerator;
 }
 
-export function InteractiveTerminal({ onCommand, onTokenAddressChange }: Props) {
+export function InteractiveTerminal({ 
+  onCommand, 
+  onTokenAddressChange, 
+  blockchainService,
+  musicGenerator 
+}: Props) {
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState<string[]>(['Welcome to SYMPH-AI v1.0 | 7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump', 'Type "help" for available commands']);
   const [history, setHistory] = useState<string[]>([]);
@@ -49,6 +58,39 @@ export function InteractiveTerminal({ onCommand, onTokenAddressChange }: Props) 
           
           case 'history':
             newOutput.push(...history);
+            break;
+          
+          case 'quantum':
+            try {
+              if (cmd.toLowerCase().startsWith('quantum ')) {
+                const signature = cmd.split(' ')[1];
+                if (!signature) {
+                  newOutput.push('Error: Please provide a transaction signature');
+                } else {
+                  const transaction = await blockchainService.getTransaction(signature);
+                  if (transaction) {
+                    newOutput.push(
+                      'Generating quantum harmonics...',
+                      'Amplitude: ' + Math.round((transaction.fee || 0) * 100) + '%',
+                      'Phase: ' + Math.round(Date.parse(transaction.timestamp) % 360) + '°',
+                      'Entanglement: Computing...'
+                    );
+                    await musicGenerator.playQuantumHarmonics(transaction);
+                  }
+                }
+              } else {
+                newOutput.push(
+                  'Quantum Harmonics Commands:',
+                  '  quantum <signature> - Play quantum harmonics for transaction',
+                  '  quantum help       - Show this help message'
+                );
+              }
+            } catch (error: unknown) {
+              const errorMessage = error instanceof Error 
+                ? error.message 
+                : 'Unknown quantum harmonics error';
+              newOutput.push('Error generating quantum harmonics:', errorMessage);
+            }
             break;
           
           default:
