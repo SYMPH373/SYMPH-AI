@@ -7,9 +7,10 @@ import { BlockchainService } from '../../lib/blockchain/index';
 interface BlockchainExplorerProps {
   onTransactionSelect: (signature: string) => void;
   blockchainService: BlockchainService;
+  refreshTrigger?: number;
 }
 
-export const BlockchainExplorer = ({ onTransactionSelect, blockchainService }: BlockchainExplorerProps) => {
+export const BlockchainExplorer = ({ onTransactionSelect, blockchainService, refreshTrigger }: BlockchainExplorerProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [transactions, setTransactions] = useState<any[]>([]);
 
@@ -24,7 +25,7 @@ export const BlockchainExplorer = ({ onTransactionSelect, blockchainService }: B
     fetchTransactions();
     const interval = setInterval(fetchTransactions, 10000); // Refresh every 10s
     return () => clearInterval(interval);
-  }, [blockchainService]);
+  }, [blockchainService, refreshTrigger]);
 
   const handleClick = async (signature: string) => {
     setIsLoading(true);
