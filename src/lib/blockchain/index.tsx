@@ -9,6 +9,10 @@ export class BlockchainService {
     this.tokenAddress = tokenAddress || '7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump';
   }
 
+  setTokenAddress(address: string) {
+    this.tokenAddress = address;
+  }
+
   async getRecentTransactions() {
     try {
       const tokenProgramId = new PublicKey(this.tokenAddress);
