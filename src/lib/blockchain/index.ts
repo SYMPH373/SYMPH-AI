@@ -2,6 +2,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 
 export class BlockchainService {
   private apiKey = '3fba9746-b765-46e8-ac4f-97f957f846dd';
+  tokenAddress: string = '7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump';
 
   async getRecentTransactions() {
     try {
