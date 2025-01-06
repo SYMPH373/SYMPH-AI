@@ -1,8 +1,14 @@
 import { Connection, PublicKey } from '@solana/web3.js';
 
-export class BlockchainService {
+export interface IBlockchainService {
+  tokenAddress: string;
+  getRecentTransactions(): Promise<any[]>;
+  getTransaction(signature: string): Promise<any>;
+}
+
+export class BlockchainService implements IBlockchainService {
   private connection: Connection;
-  private tokenAddress: string;
+  public tokenAddress: string;
 
   constructor() {
     this.connection = new Connection('https://mainnet.helius-rpc.com/?api-key=9dadbc5d-c72e-474f-8623-0b9c4e6940b7');
@@ -20,8 +26,7 @@ export class BlockchainService {
 
   public setAddress(address: string): void {
     if (!this.isValidBase58(address)) {
-      console.error('Invalid address format. Must be base58 encoded.');
-      return;
+      throw new Error('Invalid address format. Must be base58 encoded.');
     }
     this.tokenAddress = address;
   }
