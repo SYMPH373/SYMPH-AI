@@ -19,12 +19,14 @@ export default function Home() {
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [tokenAddress, setTokenAddress] = useState<string>('7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump');
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
   const blockchainService = useMemo(() => new BlockchainService(), []);
   const musicGenerator = useMemo(() => new MusicGenerator(), []);
 
   const handleTokenAddressChange = (address: string) => {
     setTokenAddress(address);
     (blockchainService as any).tokenAddress = address;
+    setRefreshTrigger(prev => prev + 1); // Force refresh
   };
 
   const handleTransactionSelect = useCallback(async (signature: string) => {
@@ -129,6 +131,7 @@ export default function Home() {
                 <BlockchainExplorer 
                   onTransactionSelect={handleTransactionSelect}
                   blockchainService={blockchainService}
+                  refreshTrigger={refreshTrigger}
                 />
               </div>
             </motion.main>
