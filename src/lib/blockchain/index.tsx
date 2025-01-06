@@ -15,12 +15,20 @@ export class BlockchainService {
 
   async getRecentTransactions() {
     try {
+      console.log('Fetching transactions for address:', this.tokenAddress);
       const tokenProgramId = new PublicKey(this.tokenAddress);
       
       const signatures = await this.connection.getSignaturesForAddress(
         tokenProgramId,
         { limit: 10 }
       );
+
+      console.log('Found transactions:', signatures.length);
+      
+      if (signatures.length === 0) {
+        console.log('No transactions found for address');
+        return [];
+      }
 
       return signatures.map(sig => ({
         signature: sig.signature,
@@ -29,7 +37,7 @@ export class BlockchainService {
       }));
 
     } catch (error) {
-      console.error('Error fetching recent transactions:', error);
+      console.error('Error fetching transactions:', error);
       return [];
     }
   }
