@@ -39,7 +39,12 @@ export default function Home() {
       console.log('Initial transactions after change:', transactions);
     } catch (error) {
       console.error('Invalid address format:', error);
-      // You might want to show this error to the user
+      // Show error in terminal
+      const terminalOutput = `Error: Invalid Solana address format. Please provide a valid base58 address.`;
+      if (error instanceof Error) {
+        console.error(terminalOutput, error.message);
+      }
+      handleCommand(terminalOutput);
     }
   };
 
