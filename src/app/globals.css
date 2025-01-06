@@ -47,10 +47,10 @@ body {
   border-radius: 4px;
   height: 100%;
   overflow-y: auto;
-  padding: 16px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   max-height: calc(100vh - 32px);
 }
 
@@ -127,13 +127,12 @@ body {
 /* Transaction Details */
 .transaction-details {
   width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 16px;
+  max-width: 700px;
+  margin: 8px auto;
+  padding: 12px;
   background: rgba(0, 13, 25, 0.95);
   border: 1px solid #004d2e;
   border-radius: 4px;
-  text-align: center;
 }
 
 .transaction-field {
@@ -146,12 +145,11 @@ body {
 /* Recent Transactions */
 .recent-transactions {
   width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 16px;
-  background: rgba(0, 13, 25, 0.95);
-  border: 1px solid #004d2e;
-  border-radius: 4px;
+  max-width: 700px;
+  margin: 8px auto;
+  padding: 12px;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .recent-transactions-title {
@@ -161,53 +159,40 @@ body {
 }
 
 .transaction-list {
-  width: 100%;
-  max-width: 750px;
-  margin: 0 auto;
-  padding-right: 8px;
+  max-height: 180px;
+  overflow-y: auto;
 }
 
 .transaction-item {
-  text-align: center;
-  padding: 8px 16px;
-  margin: 4px 0;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.transaction-item:hover {
-  background: rgba(12, 255, 146, 0.1);
-  border-color: #004d2e;
+  padding: 6px 12px;
+  margin: 3px 0;
+  font-size: 0.85em;
 }
 
 /* Visualizer Controls */
 .visualizer-controls {
   width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 16px;
-  background: rgba(0, 13, 25, 0.95);
-  border: 1px solid #004d2e;
-  border-radius: 4px;
+  max-width: 700px;
+  margin: 8px auto;
+  padding: 12px;
 }
 
 .visualizer-buttons {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
 .visualizer-btn {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid #004d2e;
   color: #0cff92;
-  padding: 8px 16px;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 0.85em;
 }
 
 .visualizer-btn:hover {
@@ -224,7 +209,7 @@ body {
 .transaction-details-container {
   flex-shrink: 0;
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -232,7 +217,7 @@ body {
 .visualizer-container {
   flex-shrink: 0;
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -240,10 +225,10 @@ body {
 .recent-transactions-container {
   flex-shrink: 0;
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   overflow-y: auto;
-  max-height: 300px; /* Adjust this value as needed */
+  max-height: 200px;
 }
 
 /* Adjust spacing between sections */
@@ -275,4 +260,10 @@ body {
 
 .terminal-main {
   padding-right: 24px; /* Extra padding for scrollbar */
+}
+
+/* Sound Visualization */
+.sound-visualization {
+  max-height: 200px;
+  margin: 8px 0;
 }
