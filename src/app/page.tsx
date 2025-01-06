@@ -19,11 +19,12 @@ export default function Home() {
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [tokenAddress, setTokenAddress] = useState<string>('7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump');
-  const blockchainService = useMemo(() => new BlockchainService(tokenAddress), [tokenAddress]);
+  const blockchainService = useMemo(() => new BlockchainService(), []);
   const musicGenerator = useMemo(() => new MusicGenerator(), []);
 
   const handleTokenAddressChange = (address: string) => {
     setTokenAddress(address);
+    blockchainService.setTokenAddress(address);
   };
 
   const handleTransactionSelect = useCallback(async (signature: string) => {
