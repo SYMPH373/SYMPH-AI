@@ -26,24 +26,28 @@ export default function Home() {
 
   const handleTokenAddressChange = async (address: string) => {
     try {
-      // Validate address format
-      new PublicKey(address);
+      // Clean up the address string
+      const cleanAddress = address.trim();
       
-      console.log('Changing token address to:', address);
-      setTokenAddress(address);
-      (blockchainService as any).tokenAddress = address;
+      // Validate address format
+      const pubKey = new PublicKey(cleanAddress);
+      if (!pubKey) throw new Error('Invalid public key');
+      
+      console.log('Changing token address to:', cleanAddress);
+      setTokenAddress(cleanAddress);
+      (blockchainService as any).tokenAddress = cleanAddress;
       setRefreshTrigger(prev => prev + 1);
       
       // Force an immediate refresh
       const transactions = await blockchainService.getRecentTransactions();
+      if (transactions.length === 0) {
+        throw new Error('No transactions found for this address');
+      }
       console.log('Initial transactions after change:', transactions);
     } catch (error) {
       console.error('Invalid address format:', error);
-      // Show error in terminal
-      const terminalOutput = `Error: Invalid Solana address format. Please provide a valid base58 address.`;
-      if (error instanceof Error) {
-        console.error(terminalOutput, error.message);
-      }
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const terminalOutput = `Error: ${errorMessage}. Please provide a valid Solana token address.`;
       handleCommand(terminalOutput);
     }
   };
