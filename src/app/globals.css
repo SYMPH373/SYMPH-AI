@@ -389,21 +389,25 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
   padding: 16px;
   background: rgba(0, 13, 25, 0.8);
   border: 1px solid var(--terminal-border);
   border-radius: 4px;
-  margin: 20px 0;
 }
 
 .transaction-list {
   width: 100%;
-  max-width: 800px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .transaction-item {
-  padding: 8px;
+  width: 100%;
+  max-width: 750px;
+  padding: 8px 16px;
   margin: 4px 0;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -412,6 +416,10 @@ body {
   font-family: 'JetBrains Mono', monospace;
   color: var(--terminal-text);
   opacity: 0.8;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .transaction-item:hover {
@@ -424,6 +432,8 @@ body {
 .transaction-loading {
   color: #ff3399;
   animation: pulse 1.5s infinite;
+  text-align: center;
+  width: 100%;
 }
 
 @keyframes pulse {
