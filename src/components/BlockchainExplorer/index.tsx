@@ -6,24 +6,25 @@ import { BlockchainService } from '../../lib/blockchain/index';
 
 interface BlockchainExplorerProps {
   onTransactionSelect: (signature: string) => void;
+  blockchainService: BlockchainService;
 }
 
-export const BlockchainExplorer = ({ onTransactionSelect }: BlockchainExplorerProps) => {
+export const BlockchainExplorer = ({ onTransactionSelect, blockchainService }: BlockchainExplorerProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [transactions, setTransactions] = useState<any[]>([]);
 
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      const blockchainService = new BlockchainService();
-      const recentTxns = await blockchainService.getRecentTransactions();
-      setTransactions(recentTxns);
-    };
+  const fetchTransactions = async () => {
+    setIsLoading(true);
+    const recentTxns = await blockchainService.getRecentTransactions();
+    setTransactions(recentTxns);
+    setIsLoading(false);
+  };
 
+  useEffect(() => {
     fetchTransactions();
     const interval = setInterval(fetchTransactions, 10000); // Refresh every 10s
-
     return () => clearInterval(interval);
-  }, []);
+  }, [blockchainService]);
 
   const handleClick = async (signature: string) => {
     setIsLoading(true);
