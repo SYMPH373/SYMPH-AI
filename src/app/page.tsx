@@ -136,8 +136,10 @@ export default function Home() {
               
               <div className="w-full max-w-3xl h-[calc(100vh-120px)] overflow-y-auto space-y-4 hide-scrollbar">
                 <InteractiveTerminal 
-                  onCommand={handleCommand} 
+                  onCommand={handleCommand}
                   onTokenAddressChange={handleTokenAddressChange}
+                  blockchainService={blockchainService}
+                  musicGenerator={musicGenerator}
                 />
                 
                 <AnimatePresence>
