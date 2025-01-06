@@ -15,13 +15,22 @@ export const BlockchainExplorer = ({ onTransactionSelect, blockchainService, ref
   const [transactions, setTransactions] = useState<any[]>([]);
 
   const fetchTransactions = async () => {
-    setIsLoading(true);
-    const recentTxns = await blockchainService.getRecentTransactions();
-    setTransactions(recentTxns);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const recentTxns = await blockchainService.getRecentTransactions();
+      console.log('Fetched transactions:', recentTxns);
+      if (recentTxns && recentTxns.length > 0) {
+        setTransactions(recentTxns);
+      }
+    } catch (error) {
+      console.error('Error in BlockchainExplorer:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
+    console.log('Refresh triggered');
     fetchTransactions();
     const interval = setInterval(fetchTransactions, 10000); // Refresh every 10s
     return () => clearInterval(interval);
