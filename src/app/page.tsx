@@ -14,6 +14,7 @@ import { CommandHelp } from '@/components/CommandHelp';
 import { VolumeControl } from '@/components/VolumeControl';
 import { LiveActivityFeed } from '@/components/LiveActivityFeed';
 import { NetworkStats } from '@/components/NetworkStats';
+import { PublicKey } from '@solana/web3.js';
 
 export default function Home() {
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
@@ -24,14 +25,22 @@ export default function Home() {
   const musicGenerator = useMemo(() => new MusicGenerator(), []);
 
   const handleTokenAddressChange = async (address: string) => {
-    console.log('Changing token address to:', address);
-    setTokenAddress(address);
-    (blockchainService as any).tokenAddress = address;
-    setRefreshTrigger(prev => prev + 1);
-    
-    // Force an immediate refresh
-    const transactions = await blockchainService.getRecentTransactions();
-    console.log('Initial transactions after change:', transactions);
+    try {
+      // Validate address format
+      new PublicKey(address);
+      
+      console.log('Changing token address to:', address);
+      setTokenAddress(address);
+      (blockchainService as any).tokenAddress = address;
+      setRefreshTrigger(prev => prev + 1);
+      
+      // Force an immediate refresh
+      const transactions = await blockchainService.getRecentTransactions();
+      console.log('Initial transactions after change:', transactions);
+    } catch (error) {
+      console.error('Invalid address format:', error);
+      // You might want to show this error to the user
+    }
   };
 
   const handleTransactionSelect = useCallback(async (signature: string) => {
