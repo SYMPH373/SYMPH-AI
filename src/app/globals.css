@@ -86,3 +86,97 @@ body {
   border-radius: 2px;
 }
 
+/* Terminal Interface */
+.terminal-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+/* Welcome Section */
+.terminal-welcome {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.terminal-welcome-title {
+  color: #0cff92;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.terminal-welcome-address {
+  color: #ff00ff;
+  font-size: 0.9em;
+}
+
+/* Input Section */
+.terminal-input-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+}
+
+.terminal-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #0cff92;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+
+/* Transaction Details */
+.transaction-panel {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.transaction-field {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 0.9em;
+}
+
+/* Visualizer */
+.visualizer-panel {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.visualizer-display {
+  height: 160px;
+  margin-top: 12px;
+}
+
+/* Recent Transactions */
+.transactions-panel {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.transactions-list {
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.transaction-item {
+  padding: 4px 8px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
