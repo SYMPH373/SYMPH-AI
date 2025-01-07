@@ -145,9 +145,6 @@ export default function Home() {
             transactions={recentTransactions}
             onTransactionSelect={handleTransactionSelect}
           />
-          
-          <NetworkStats />
-          <VolumeControl onChange={handleVolumeChange} className="terminal-volume" />
         </div>
 
         {/* Right Panel */}
