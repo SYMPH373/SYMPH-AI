@@ -160,8 +160,17 @@ export function InteractiveTerminal({
       <div className="terminal-header">
         <h1 className="terminal-title">Welcome to SYMPH-AI v1.0</h1>
         <div className="terminal-address">{blockchainService.tokenAddress}</div>
+        
+        {/* Command Output */}
+        <div className="terminal-output">
+          {output.map((line, i) => (
+            <div key={i} className="output-line">{line}</div>
+          ))}
+        </div>
+        
         <div className="terminal-input-wrapper">
           <input
+            ref={inputRef}
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
