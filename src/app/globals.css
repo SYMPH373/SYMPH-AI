@@ -136,14 +136,51 @@ body {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid #004d2e;
   border-radius: 4px;
-  padding: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.transaction-field {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
+.transaction-details {
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.visualizer-section {
+  height: 180px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.transactions-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.list-title {
+  color: #0cff92;
   font-size: 0.9em;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.transaction-item {
+  padding: 4px 8px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.transaction-item:hover {
+  background: rgba(12, 255, 146, 0.1);
 }
 
 /* Visualizer */
