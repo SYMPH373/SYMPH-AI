@@ -217,3 +217,20 @@ body {
   text-overflow: ellipsis;
 }
 
+.terminal-output {
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 12px 0;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #004d2e;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.output-line {
+  padding: 2px 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
