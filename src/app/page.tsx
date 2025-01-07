@@ -136,31 +136,18 @@ export default function Home() {
             onTokenAddressChange={handleTokenAddressChange}
             blockchainService={blockchainService}
             musicGenerator={musicGenerator}
-            transaction={{}}
-            isPlaying={false}
-            type=""
+            transaction={selectedTransaction}
+            isPlaying={isPlaying}
+            type={selectedTransaction?.type}
             visualizers={[]}
             currentVisualizer={0}
             setCurrentVisualizer={() => {}}
             transactions={recentTransactions}
-          />
-          
-          {selectedTransaction && (
-            <div className="terminal-transaction">
-              <TransactionDetails transaction={selectedTransaction} />
-              <VisualizerSelector 
-                isPlaying={isPlaying} 
-                type={selectedTransaction.type}
-                transaction={selectedTransaction.signature}
-              />
-            </div>
-          )}
-          
-          <BlockchainExplorer 
             onTransactionSelect={handleTransactionSelect}
-            blockchainService={blockchainService}
-            refreshTrigger={refreshTrigger}
           />
+          
+          <NetworkStats />
+          <VolumeControl onChange={handleVolumeChange} className="terminal-volume" />
         </div>
 
         {/* Right Panel */}
