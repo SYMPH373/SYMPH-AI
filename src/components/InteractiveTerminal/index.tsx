@@ -18,6 +18,7 @@ interface Props {
   currentVisualizer?: number;
   setCurrentVisualizer?: (index: number) => void;
   transactions?: any[];
+  onTransactionSelect?: (signature: string) => void;
 }
 
 export function InteractiveTerminal({ 
@@ -32,6 +33,7 @@ export function InteractiveTerminal({
   currentVisualizer = 0,
   setCurrentVisualizer = () => {},
   transactions = [],
+  onTransactionSelect,
 }: Props) {
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState<string[]>(['Welcome to SYMPH-AI v1.0 | 7omp98JBaH3a9okQwwPCtGfHaZh4m4TRKqNuZAdBpump', 'Type "help" for available commands']);
@@ -154,7 +156,7 @@ export function InteractiveTerminal({
 
   return (
     <div className="terminal-interface">
-      {/* Header */}
+      {/* Header & Input */}
       <div className="terminal-header">
         <h1 className="terminal-title">Welcome to SYMPH-AI v1.0</h1>
         <div className="terminal-address">{blockchainService.tokenAddress}</div>
@@ -170,58 +172,52 @@ export function InteractiveTerminal({
         </div>
       </div>
 
-      {/* Transaction Details */}
+      {/* Unified Transaction Panel */}
       <div className="transaction-panel">
-        <div className="transaction-field">
-          <span>signature:</span>
-          <span>{transaction.signature}</span>
-        </div>
-        <div className="transaction-field">
-          <span>type:</span>
-          <span>{transaction.type}</span>
-        </div>
-        <div className="transaction-field">
-          <span>status:</span>
-          <span>{transaction.status}</span>
-        </div>
-        <div className="transaction-field">
-          <span>timestamp:</span>
-          <span>{transaction.timestamp}</span>
-        </div>
-        <div className="transaction-field">
-          <span>fee:</span>
-          <span>{transaction.fee} SOL</span>
-        </div>
-      </div>
+        {/* Selected Transaction Details */}
+        {transaction.signature && (
+          <div className="transaction-details">
+            <div className="transaction-field">
+              <span>signature:</span>
+              <span>{transaction.signature}</span>
+            </div>
+            <div className="transaction-field">
+              <span>type:</span>
+              <span>{transaction.type}</span>
+            </div>
+            <div className="transaction-field">
+              <span>status:</span>
+              <span>{transaction.status}</span>
+            </div>
+            <div className="transaction-field">
+              <span>timestamp:</span>
+              <span>{transaction.timestamp}</span>
+            </div>
+            <div className="transaction-field">
+              <span>fee:</span>
+              <span>{transaction.fee} SOL</span>
+            </div>
+          </div>
+        )}
 
-      {/* Visualizer */}
-      <div className="visualizer-panel">
-        <div className="visualizer-buttons">
-          {visualizers.map((v, i) => (
-            <button 
-              key={v.name}
-              className={`visualizer-btn ${currentVisualizer === i ? 'active' : ''}`}
-              onClick={() => setCurrentVisualizer(i)}
-            >
-              {v.name}
-            </button>
-          ))}
-        </div>
-        <div className="visualizer-display">
+        {/* Visualizer */}
+        <div className="visualizer-section">
           <CurrentComponent 
             isPlaying={isPlaying} 
             type={type} 
             transaction={transaction}
           />
         </div>
-      </div>
 
-      {/* Recent Transactions */}
-      <div className="transactions-panel">
-        <h2 className="panel-title">Recent Transactions</h2>
+        {/* Recent Transactions List */}
         <div className="transactions-list">
+          <h3 className="list-title">Recent Transactions</h3>
           {transactions.map(tx => (
-            <div key={tx.signature} className="transaction-item">
+            <div 
+              key={tx.signature} 
+              className="transaction-item"
+              onClick={() => onTransactionSelect?.(tx.signature)}
+            >
               {tx.signature}
             </div>
           ))}
